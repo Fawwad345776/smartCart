@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name" translatable="false">SmartCart</string>
+
+    <!-- Splash -->
+    <string name="splash_tagline">Smart lists. Smarter shopping.</string>
+    <string name="splash_methods">Voice · Type · Scan · Save</string>
+
+    <!-- Onboarding -->
+    <string name="onb_skip">Skip</string>
+    <string name="onb_back">Back</string>
+    <string name="onb_next">Next</string>
+    <string name="onb_get_started">Get Started</string>
+    <string name="onb_step">%1$d / %2$d</string>
+    <string name="onb1_title">Your list,\nyour way</string>
+    <string name="onb1_body">Just speak and items get added. Or type, scan, or reopen an old list.</string>
+    <string name="onb1_chip_voice">Voice</string>
+    <string name="onb1_chip_type">Type</string>
+    <string name="onb1_chip_scan">Scan</string>
+    <string name="onb1_chip_old">Old list</string>
+    <string name="onb2_title">Never forget\na thing</string>
+    <string name="onb2_body">Get reminded 1 hour before shopping. Tick items as you go. Anything you couldn\'t find moves to your next list.</string>
+    <string name="onb2_chip_reminder">Shopping today</string>
+    <string name="onb2_chip_reminder_time">6:00 PM · in 1 hour</string>
+    <string name="onb2_chip_done">Rice 5 kg</string>
+    <string name="onb2_chip_todo">Tomatoes</string>
+    <string name="onb2_chip_move">Move to next list</string>
+    <string name="onb3_title">Scan bills,\nsave money</string>
+    <string name="onb3_body">Set a monthly budget. Every bill you scan is saved and counted, with a full history.</string>
+    <string name="onb3_chip_month">This month</string>
+    <string name="onb3_chip_spent">16,000</string>
+    <string name="onb3_chip_budget">/ 25,000</string>
+    <string name="onb3_chip_saved">Bill saved</string>
+    <string name="onb3_chip_store">Your store</string>
+    <string name="onb3_chip_history">Monthly history</string>
+
+    <!-- Tabs -->
+    <string name="tab_lists">My Lists</string>
+    <string name="tab_bills">Bills</string>
+    <string name="tab_budget">Budget</string>
+    <string name="tab_settings">Settings</string>
+
+    <!-- Common actions -->
+    <string name="action_done">Done</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_ok">OK</string>
+    <string name="action_next">Next</string>
+    <string name="action_back">Back</string>
+    <string name="action_add">Add</string>
+    <string name="action_add_selected">Add selected</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_move">Move</string>
+    <string name="action_more">More options</string>
+    <string name="action_select_all">Select all</string>
+    <string name="action_clear_all">Clear all</string>
+    <string name="pick_time">Pick a time</string>
+
+    <plurals name="items_count">
+        <item quantity="one">%d item</item>
+        <item quantity="other">%d items</item>
+    </plurals>
+
+    <!-- Lists tab -->
+    <string name="home_new_list">New list</string>
+    <string name="home_empty_title">No lists yet</string>
+    <string name="home_empty_body">Tap New list to make your first shopping list.</string>
+    <string name="lists_active">To buy</string>
+    <string name="lists_done">Done</string>
+    <string name="lists_next_trip">Next shopping trip</string>
+    <plurals name="lists_remaining">
+        <item quantity="one">%d item left from last time</item>
+        <item quantity="other">%d items left from last time</item>
+    </plurals>
+    <string name="lists_remaining_hint">Tap to start a new list with them</string>
+    <string name="lists_done_on">Done on %1$s</string>
+    <string name="lists_use_again">Use again</string>
+    <string name="list_delete_title">Delete this list?</string>
+    <string name="list_delete_body">The list and its items will be removed.</string>
+
+    <!-- Editor -->
+    <string name="editor_title_new">New list</string>
+    <string name="editor_title_edit">Edit list</string>
+    <string name="editor_default_name">Shopping %1$s</string>
+    <string name="editor_name">List name</string>
+    <string name="editor_when">When are you going?</string>
+    <string name="editor_when_hint">Set a date and time to get a reminder</string>
+    <string name="editor_reminder_set">We\'ll remind you 1 hour before</string>
+    <string name="editor_add_items">Add items</string>
+    <string name="method_voice">Speak</string>
+    <string name="method_scan">Scan</string>
+    <string name="method_old_list">Old list</string>
+    <string name="method_remaining">Left last time (%1$d)</string>
+    <string name="editor_empty">No items yet. Type below, speak, or scan a list.</string>
+    <string name="editor_type_item">Add an item</string>
+    <string name="editor_qty">Qty</string>
+    <string name="editor_save_list">Save list</string>
+    <string name="edit_item">Edit item</string>
+    <string name="item_name">Item</string>
+    <string name="remaining_title">Left from last time</string>
+    <string name="old_lists_title">Open an old list</string>
+    <string name="old_lists_empty">No old lists yet.</string>
+
+    <!-- Voice -->
+    <string name="voice_title">Speak your list</string>
+    <string name="voice_hint">Say items one after another, like \"half kg sugar, 2 kg rice and a dozen eggs\". They are added as you speak. Talking fast? Say \"and\" between items.</string>
+    <string name="voice_added_hint">Added. Tap ✕ if something is wrong and say it again.</string>
+    <string name="voice_remove_item">Remove %1$s</string>
+    <string name="voice_listening">Listening…</string>
+    <string name="voice_paused">Tap the mic to talk</string>
+    <string name="voice_start">Start listening</string>
+    <string name="voice_stop">Stop listening</string>
+    <string name="voice_error">Couldn\'t hear you. Tap the mic to try again.</string>
+    <string name="voice_unavailable">Voice typing isn\'t available on this phone.</string>
+    <string name="voice_permission">Allow the microphone to add items by voice.</string>
+
+    <!-- Scan -->
+    <string name="scan_language">Scan language</string>
+    <string name="scan_reading_list">Reading your list</string>
+    <string name="scan_wait">This takes a few seconds…</string>
+    <string name="scan_found_title">Items found</string>
+    <string name="scan_unreadable">Couldn\'t read this page. Try a clearer photo or another language.</string>
+    <string name="scan_needs_internet">Urdu and Arabic scanning needs an internet connection.</string>
+    <string name="scan_unavailable">The scanner isn\'t available on this phone right now.</string>
+
+    <!-- Shopping mode -->
+    <string name="shop_progress">%1$d of %2$d items</string>
+    <plurals name="shop_move_remaining">
+        <item quantity="one">Not found? Move %d item to next time</item>
+        <item quantity="other">Not found? Move %d items to next time</item>
+    </plurals>
+    <string name="shop_move_title">Move to next time?</string>
+    <plurals name="shop_move_body">
+        <item quantity="one">%d item you didn\'t find will be saved. You can add it to your next list.</item>
+        <item quantity="other">%d items you didn\'t find will be saved. You can add them to your next list.</item>
+    </plurals>
+    <string name="shop_all_done">All done!</string>
+    <string name="shop_scan_hint">Add your bill to save it and track your spending.</string>
+    <string name="shop_add_bill">Add bill</string>
+    <string name="shop_scan_bill">Scan bill</string>
+    <string name="shop_finish_no_bill">Finish without a bill</string>
+
+    <!-- Bills -->
+    <string name="bills_empty_title">No bills yet</string>
+    <string name="bills_empty_body">Scan a bill after shopping and it will show up here.</string>
+    <string name="bills_add_manual">Add a bill by hand</string>
+    <string name="bill_title_new">New bill</string>
+    <string name="bill_title_edit">Bill</string>
+    <string name="bill_untitled">Bill</string>
+    <string name="bill_image">Bill photo</string>
+    <string name="bill_reading">Reading the bill…</string>
+    <string name="bill_store">Store / shop / market</string>
+    <string name="bill_location">Location</string>
+    <string name="bill_use_location">Use my location</string>
+    <string name="bill_items">Items</string>
+    <string name="bill_add_item">Add item</string>
+    <string name="bill_price">Price</string>
+    <string name="bill_total">Total</string>
+    <string name="bill_use_sum">Use items total (%1$s)</string>
+    <string name="bill_save">Save bill</string>
+    <string name="bill_add_items_by">Add items by</string>
+    <string name="method_write">Write</string>
+    <string name="bill_voice_title">Speak your bill</string>
+    <string name="bill_voice_hint">Say each item with its quantity and price, like \"rice 5 kg 1450, milk 2 packet 360\". Everything stays editable.</string>
+    <string name="bill_items_empty">No items yet. Write, speak or scan your bill.</string>
+    <string name="bill_scan_check">Read from the photo. Please check the items and prices.</string>
+    <string name="bill_items_sum">Items add up to %1$s</string>
+    <string name="col_item">Item</string>
+    <string name="col_qty">Qty</string>
+    <string name="col_price">Price</string>
+    <string name="bill_synced">Saved online</string>
+    <string name="bill_not_synced">Not uploaded yet</string>
+    <string name="bill_delete_title">Delete this bill?</string>
+    <string name="bill_delete_body">It will be removed from this phone and from your online backup.</string>
+
+    <!-- Budget -->
+    <string name="budget_spent">Spent this month</string>
+    <string name="budget_none">Set a budget to see how much you have left.</string>
+    <string name="budget_set">Set monthly budget</string>
+    <string name="budget_set_title">Budget for %1$s</string>
+    <string name="budget_set_body">Each month starts with last month\'s budget. You can change it any time.</string>
+    <string name="budget_of">of %1$s</string>
+    <string name="budget_left">%1$s left</string>
+    <string name="budget_over">%1$s over budget</string>
+    <string name="budget_days_left">%1$d days left this month</string>
+    <string name="budget_history">History</string>
+
+    <!-- Settings -->
+    <string name="settings_app_language">App language</string>
+    <string name="settings_app_language_hint">Language for menus and buttons</string>
+    <string name="settings_input_language">Voice &amp; scan language</string>
+    <string name="settings_input_language_hint">Used when you speak or scan a list or bill</string>
+    <string name="settings_theme">Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="settings_weekly">Market day reminder</string>
+    <string name="settings_weekly_hint">Get a reminder on the days you usually shop</string>
+    <string name="settings_weekly_time">Remind me at %1$s</string>
+    <string name="settings_version">SmartCart %1$s</string>
+
+    <!-- Notifications -->
+    <string name="channel_trip">Shopping trip reminders</string>
+    <string name="channel_weekly">Market day reminders</string>
+    <string name="notif_trip_title">Time to go shopping today</string>
+    <plurals name="notif_trip_body">
+        <item quantity="one">%1$s · %2$d item in 1 hour</item>
+        <item quantity="other">%1$s · %2$d items in 1 hour</item>
+    </plurals>
+    <string name="notif_weekly_title">It\'s market day</string>
+    <string name="notif_weekly_body">Make your shopping list before you go.</string>
+</resources>

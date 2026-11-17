@@ -1,0 +1,12 @@
+<resources>
+    <!-- Android 12+: set the platform splash attributes directly too, so every launcher
+         (Samsung included) shows our background and the same logo tile the animated splash starts from. -->
+    <style name="Theme.SmartCart.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo_tile</item>
+        <item name="android:windowSplashScreenBackground">@color/splash_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_logo_tile</item>
+        <item name="android:windowBackground">@color/splash_background</item>
+        <item name="postSplashScreenTheme">@style/Theme.SmartCart</item>
+    </style>
+</resources>

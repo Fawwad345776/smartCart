@@ -1,0 +1,212 @@
+<resources>
+    <!-- Splash -->
+    <string name="splash_tagline">سمارٹ لسٹ، سمارٹ خریداری۔</string>
+    <string name="splash_methods">بولیں · لکھیں · اسکین کریں · محفوظ کریں</string>
+
+    <!-- Onboarding -->
+    <string name="onb_skip">چھوڑیں</string>
+    <string name="onb_back">واپس</string>
+    <string name="onb_next">آگے</string>
+    <string name="onb_get_started">شروع کریں</string>
+    <string name="onb_step">%1$d / %2$d</string>
+    <string name="onb1_title">آپ کی لسٹ،\nآپ کا طریقہ</string>
+    <string name="onb1_body">بس بولیں اور چیزیں لسٹ میں آتی جائیں گی۔ یا لکھیں، اسکین کریں یا پرانی لسٹ کھولیں۔</string>
+    <string name="onb1_chip_voice">آواز</string>
+    <string name="onb1_chip_type">لکھیں</string>
+    <string name="onb1_chip_scan">اسکین</string>
+    <string name="onb1_chip_old">پرانی لسٹ</string>
+    <string name="onb2_title">کچھ بھی\nنہ بھولیں</string>
+    <string name="onb2_body">خریداری سے 1 گھنٹہ پہلے یاد دہانی ملے گی۔ چیزیں لیتے جائیں اور ٹک کرتے جائیں۔ جو نہ ملے وہ اگلی لسٹ میں چلی جائے گی۔</string>
+    <string name="onb2_chip_reminder">آج خریداری ہے</string>
+    <string name="onb2_chip_reminder_time">شام 6 بجے · 1 گھنٹے میں</string>
+    <string name="onb2_chip_done">چاول 5 کلو</string>
+    <string name="onb2_chip_todo">ٹماٹر</string>
+    <string name="onb2_chip_move">اگلی لسٹ میں</string>
+    <string name="onb3_title">بل اسکین کریں،\nپیسے بچائیں</string>
+    <string name="onb3_body">مہینے کا بجٹ رکھیں۔ ہر اسکین کیا ہوا بل محفوظ ہو کر خرچ میں جڑتا جائے گا، پوری ہسٹری کے ساتھ۔</string>
+    <string name="onb3_chip_month">اس مہینے</string>
+    <string name="onb3_chip_spent">16,000</string>
+    <string name="onb3_chip_budget">/ 25,000</string>
+    <string name="onb3_chip_saved">بل محفوظ ہو گیا</string>
+    <string name="onb3_chip_store">آپ کی دکان</string>
+    <string name="onb3_chip_history">ماہانہ ہسٹری</string>
+
+    <!-- Tabs -->
+    <string name="tab_lists">میری لسٹیں</string>
+    <string name="tab_bills">بل</string>
+    <string name="tab_budget">بجٹ</string>
+    <string name="tab_settings">سیٹنگز</string>
+
+    <!-- Common actions -->
+    <string name="action_done">ہو گیا</string>
+    <string name="action_save">محفوظ کریں</string>
+    <string name="action_cancel">منسوخ</string>
+    <string name="action_ok">ٹھیک ہے</string>
+    <string name="action_next">آگے</string>
+    <string name="action_back">واپس</string>
+    <string name="action_add">شامل کریں</string>
+    <string name="action_add_selected">منتخب شامل کریں</string>
+    <string name="action_remove">ہٹائیں</string>
+    <string name="action_clear">صاف کریں</string>
+    <string name="action_edit">ترمیم</string>
+    <string name="action_delete">حذف کریں</string>
+    <string name="action_move">منتقل کریں</string>
+    <string name="action_more">مزید</string>
+    <string name="action_select_all">سب منتخب کریں</string>
+    <string name="action_clear_all">سب ہٹائیں</string>
+    <string name="pick_time">وقت منتخب کریں</string>
+
+    <plurals name="items_count">
+        <item quantity="one">%d چیز</item>
+        <item quantity="other">%d چیزیں</item>
+    </plurals>
+
+    <!-- Lists tab -->
+    <string name="home_new_list">نئی لسٹ</string>
+    <string name="home_empty_title">ابھی کوئی لسٹ نہیں</string>
+    <string name="home_empty_body">اپنی پہلی خریداری کی لسٹ بنانے کے لیے نئی لسٹ دبائیں۔</string>
+    <string name="lists_active">خریدنا ہے</string>
+    <string name="lists_done">مکمل</string>
+    <string name="lists_next_trip">اگلی خریداری</string>
+    <plurals name="lists_remaining">
+        <item quantity="one">پچھلی بار کی %d چیز رہ گئی</item>
+        <item quantity="other">پچھلی بار کی %d چیزیں رہ گئیں</item>
+    </plurals>
+    <string name="lists_remaining_hint">ان کے ساتھ نئی لسٹ بنانے کے لیے دبائیں</string>
+    <string name="lists_done_on">%1$s کو مکمل</string>
+    <string name="lists_use_again">دوبارہ استعمال</string>
+    <string name="list_delete_title">یہ لسٹ حذف کریں؟</string>
+    <string name="list_delete_body">لسٹ اور اس کی تمام چیزیں ہٹا دی جائیں گی۔</string>
+
+    <!-- Editor -->
+    <string name="editor_title_new">نئی لسٹ</string>
+    <string name="editor_title_edit">لسٹ میں ترمیم</string>
+    <string name="editor_default_name">خریداری %1$s</string>
+    <string name="editor_name">لسٹ کا نام</string>
+    <string name="editor_when">آپ کب جائیں گے؟</string>
+    <string name="editor_when_hint">یاد دہانی کے لیے تاریخ اور وقت رکھیں</string>
+    <string name="editor_reminder_set">ہم آپ کو 1 گھنٹہ پہلے یاد دلائیں گے</string>
+    <string name="editor_add_items">چیزیں شامل کریں</string>
+    <string name="method_voice">بولیں</string>
+    <string name="method_scan">اسکین</string>
+    <string name="method_old_list">پرانی لسٹ</string>
+    <string name="method_remaining">پچھلی بار کی (%1$d)</string>
+    <string name="editor_empty">ابھی کوئی چیز نہیں۔ نیچے لکھیں، بولیں یا لسٹ اسکین کریں۔</string>
+    <string name="editor_type_item">چیز لکھیں</string>
+    <string name="editor_qty">مقدار</string>
+    <string name="editor_save_list">لسٹ محفوظ کریں</string>
+    <string name="edit_item">چیز میں ترمیم</string>
+    <string name="item_name">چیز</string>
+    <string name="remaining_title">پچھلی بار کی بچی ہوئی</string>
+    <string name="old_lists_title">پرانی لسٹ کھولیں</string>
+    <string name="old_lists_empty">ابھی کوئی پرانی لسٹ نہیں۔</string>
+
+    <!-- Voice -->
+    <string name="voice_title">اپنی لسٹ بولیں</string>
+    <string name="voice_hint">چیزیں ایک کے بعد ایک بولیں، جیسے \"آدھا پاؤ دہی، 2 کلو چاول اور ایک درجن انڈے\"۔ بولتے ہی شامل ہوتی جائیں گی۔ جلدی بول رہے ہیں؟ ہر چیز کے بیچ \"اور\" کہیں۔</string>
+    <string name="voice_added_hint">شامل ہو گئیں۔ کچھ غلط ہو تو ✕ دبائیں اور دوبارہ بولیں۔</string>
+    <string name="voice_remove_item">%1$s ہٹائیں</string>
+    <string name="voice_listening">سن رہا ہے…</string>
+    <string name="voice_paused">بولنے کے لیے مائیک دبائیں</string>
+    <string name="voice_start">سننا شروع کریں</string>
+    <string name="voice_stop">سننا بند کریں</string>
+    <string name="voice_error">آواز سنائی نہیں دی۔ دوبارہ مائیک دبائیں۔</string>
+    <string name="voice_unavailable">اس فون پر آواز سے لکھنا دستیاب نہیں۔</string>
+    <string name="voice_permission">آواز سے چیزیں شامل کرنے کے لیے مائیک کی اجازت دیں۔</string>
+
+    <!-- Scan -->
+    <string name="scan_language">اسکین کی زبان</string>
+    <string name="scan_reading_list">لسٹ پڑھی جا رہی ہے</string>
+    <string name="scan_wait">چند سیکنڈ لگیں گے…</string>
+    <string name="scan_found_title">ملنے والی چیزیں</string>
+    <string name="scan_unreadable">یہ صفحہ پڑھا نہیں جا سکا۔ صاف تصویر لیں یا دوسری زبان چنیں۔</string>
+    <string name="scan_needs_internet">اردو اور عربی اسکین کے لیے انٹرنیٹ ضروری ہے۔</string>
+    <string name="scan_unavailable">اس وقت اس فون پر اسکینر دستیاب نہیں۔</string>
+
+    <!-- Shopping mode -->
+    <string name="shop_progress">%2$d میں سے %1$d چیزیں</string>
+    <plurals name="shop_move_remaining">
+        <item quantity="one">نہیں ملی؟ %d چیز اگلی بار کے لیے رکھیں</item>
+        <item quantity="other">نہیں ملیں؟ %d چیزیں اگلی بار کے لیے رکھیں</item>
+    </plurals>
+    <string name="shop_move_title">اگلی بار کے لیے رکھیں؟</string>
+    <plurals name="shop_move_body">
+        <item quantity="one">جو %d چیز نہیں ملی وہ محفوظ ہو جائے گی۔ آپ اسے اگلی لسٹ میں شامل کر سکتے ہیں۔</item>
+        <item quantity="other">جو %d چیزیں نہیں ملیں وہ محفوظ ہو جائیں گی۔ آپ انہیں اگلی لسٹ میں شامل کر سکتے ہیں۔</item>
+    </plurals>
+    <string name="shop_all_done">سب ہو گیا!</string>
+    <string name="shop_scan_hint">بل شامل کریں تاکہ محفوظ ہو اور خرچ کا حساب رہے۔</string>
+    <string name="shop_add_bill">بل شامل کریں</string>
+    <string name="shop_scan_bill">بل اسکین کریں</string>
+    <string name="shop_finish_no_bill">بل کے بغیر ختم کریں</string>
+
+    <!-- Bills -->
+    <string name="bills_empty_title">ابھی کوئی بل نہیں</string>
+    <string name="bills_empty_body">خریداری کے بعد بل اسکین کریں، وہ یہاں نظر آئے گا۔</string>
+    <string name="bills_add_manual">بل خود لکھیں</string>
+    <string name="bill_title_new">نیا بل</string>
+    <string name="bill_title_edit">بل</string>
+    <string name="bill_untitled">بل</string>
+    <string name="bill_image">بل کی تصویر</string>
+    <string name="bill_reading">بل پڑھا جا رہا ہے…</string>
+    <string name="bill_store">اسٹور / دکان / مارکیٹ</string>
+    <string name="bill_location">مقام</string>
+    <string name="bill_use_location">میرا مقام استعمال کریں</string>
+    <string name="bill_items">چیزیں</string>
+    <string name="bill_add_item">چیز شامل کریں</string>
+    <string name="bill_price">قیمت</string>
+    <string name="bill_total">کل</string>
+    <string name="bill_use_sum">چیزوں کا کل استعمال کریں (%1$s)</string>
+    <string name="bill_save">بل محفوظ کریں</string>
+    <string name="bill_add_items_by">چیزیں شامل کریں</string>
+    <string name="method_write">لکھیں</string>
+    <string name="bill_voice_title">اپنا بل بولیں</string>
+    <string name="bill_voice_hint">ہر چیز کو مقدار اور قیمت کے ساتھ بولیں، جیسے \"چاول 5 کلو 1450، دودھ 2 پیکٹ 360\"۔ بعد میں سب بدلا جا سکتا ہے۔</string>
+    <string name="bill_items_empty">ابھی کوئی چیز نہیں۔ بل لکھیں، بولیں یا اسکین کریں۔</string>
+    <string name="bill_scan_check">تصویر سے پڑھا گیا۔ چیزیں اور قیمتیں ایک بار دیکھ لیں۔</string>
+    <string name="bill_items_sum">چیزوں کا جوڑ %1$s</string>
+    <string name="col_item">چیز</string>
+    <string name="col_qty">مقدار</string>
+    <string name="col_price">قیمت</string>
+    <string name="bill_synced">آن لائن محفوظ</string>
+    <string name="bill_not_synced">ابھی اپ لوڈ نہیں ہوا</string>
+    <string name="bill_delete_title">یہ بل حذف کریں؟</string>
+    <string name="bill_delete_body">یہ اس فون اور آن لائن بیک اپ دونوں سے ہٹ جائے گا۔</string>
+
+    <!-- Budget -->
+    <string name="budget_spent">اس مہینے کا خرچ</string>
+    <string name="budget_none">بجٹ رکھیں تاکہ پتا چلے کتنا بچا ہے۔</string>
+    <string name="budget_set">ماہانہ بجٹ رکھیں</string>
+    <string name="budget_set_title">%1$s کا بجٹ</string>
+    <string name="budget_set_body">ہر مہینہ پچھلے مہینے کے بجٹ سے شروع ہوتا ہے۔ آپ کبھی بھی بدل سکتے ہیں۔</string>
+    <string name="budget_of">%1$s میں سے</string>
+    <string name="budget_left">%1$s باقی</string>
+    <string name="budget_over">بجٹ سے %1$s زیادہ</string>
+    <string name="budget_days_left">اس مہینے کے %1$d دن باقی</string>
+    <string name="budget_history">ہسٹری</string>
+
+    <!-- Settings -->
+    <string name="settings_app_language">ایپ کی زبان</string>
+    <string name="settings_app_language_hint">مینو اور بٹنوں کی زبان</string>
+    <string name="settings_input_language">آواز اور اسکین کی زبان</string>
+    <string name="settings_input_language_hint">لسٹ یا بل بولنے اور اسکین کرنے میں استعمال ہوگی</string>
+    <string name="settings_theme">تھیم</string>
+    <string name="theme_system">سسٹم</string>
+    <string name="theme_light">لائٹ</string>
+    <string name="theme_dark">ڈارک</string>
+    <string name="settings_weekly">مارکیٹ کے دن کی یاد دہانی</string>
+    <string name="settings_weekly_hint">جن دنوں آپ عام طور پر خریداری کرتے ہیں ان دن یاد دہانی</string>
+    <string name="settings_weekly_time">%1$s پر یاد دلائیں</string>
+    <string name="settings_version">SmartCart %1$s</string>
+
+    <!-- Notifications -->
+    <string name="channel_trip">خریداری کی یاد دہانی</string>
+    <string name="channel_weekly">مارکیٹ کے دن کی یاد دہانی</string>
+    <string name="notif_trip_title">آج آپ کو سودا لینے جانا ہے</string>
+    <plurals name="notif_trip_body">
+        <item quantity="one">%1$s · %2$d چیز · 1 گھنٹے میں</item>
+        <item quantity="other">%1$s · %2$d چیزیں · 1 گھنٹے میں</item>
+    </plurals>
+    <string name="notif_weekly_title">آج مارکیٹ کا دن ہے</string>
+    <string name="notif_weekly_body">جانے سے پہلے اپنی خریداری کی لسٹ بنا لیں۔</string>
+</resources>

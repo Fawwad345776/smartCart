@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- System splash icon: the same green tile + cart the animated Compose splash starts from
+     (128dp tile, 84dp cart). An icon without a background is drawn in a 288dp box, so the
+     tile is centred in 288 units to land at exactly 128dp on screen. The check mark is left
+     out: the animated splash draws it in. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="288dp"
+    android:height="288dp"
+    android:viewportWidth="288"
+    android:viewportHeight="288">
+    <path
+        android:fillColor="@color/splash_icon_background"
+        android:pathData="M116,80h56a36,36 0,0 1,36 36v56a36,36 0,0 1,-36 36h-56a36,36 0,0 1,-36 -36v-56a36,36 0,0 1,36 -36z" />
+    <group
+        android:scaleX="1.3125"
+        android:scaleY="1.3125"
+        android:translateX="102"
+        android:translateY="102">
+        <path
+            android:fillColor="#00000000"
+            android:pathData="M5,13h8l6.5,27h29L55,20H16"
+            android:strokeWidth="4.5"
+            android:strokeColor="#FFFFFF"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M20,50a4,4 0,1 0,8 0a4,4 0,1 0,-8 0z" />
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M40,50a4,4 0,1 0,8 0a4,4 0,1 0,-8 0z" />
+    </group>
+</vector>

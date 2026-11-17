@@ -1,0 +1,18 @@
+rules_version = '2';
+
+// SmartCart: each phone signs in anonymously and can only read/write its own bills.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId}/bills/{billId} {
+      allow read, delete: if request.auth != null && request.auth.uid == userId;
+      allow create, update: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.total is number
+        && request.resource.data.items is list
+        && request.resource.data.items.size() <= 500;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

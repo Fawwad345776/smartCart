@@ -1,0 +1,232 @@
+<resources>
+    <!-- Splash -->
+    <string name="splash_tagline">قوائم ذكية. تسوّق أذكى.</string>
+    <string name="splash_methods">تحدّث · اكتب · امسح · احفظ</string>
+
+    <!-- Onboarding -->
+    <string name="onb_skip">تخطٍّ</string>
+    <string name="onb_back">رجوع</string>
+    <string name="onb_next">التالي</string>
+    <string name="onb_get_started">ابدأ الآن</string>
+    <string name="onb_step">%1$d / %2$d</string>
+    <string name="onb1_title">قائمتك،\nبطريقتك</string>
+    <string name="onb1_body">تحدّث فقط وستُضاف الأغراض. أو اكتب، أو امسح، أو افتح قائمة قديمة.</string>
+    <string name="onb1_chip_voice">صوت</string>
+    <string name="onb1_chip_type">كتابة</string>
+    <string name="onb1_chip_scan">مسح</string>
+    <string name="onb1_chip_old">قائمة قديمة</string>
+    <string name="onb2_title">لا تنسَ\nأي شيء</string>
+    <string name="onb2_body">سنذكّرك قبل التسوّق بساعة. ضع علامة على الأغراض أثناء التسوّق، وما لم تجده ينتقل إلى قائمتك التالية.</string>
+    <string name="onb2_chip_reminder">التسوّق اليوم</string>
+    <string name="onb2_chip_reminder_time">6:00 م · بعد ساعة</string>
+    <string name="onb2_chip_done">أرز 5 كغ</string>
+    <string name="onb2_chip_todo">طماطم</string>
+    <string name="onb2_chip_move">إلى القائمة التالية</string>
+    <string name="onb3_title">امسح الفواتير،\nووفّر المال</string>
+    <string name="onb3_body">حدّد ميزانية شهرية. كل فاتورة تمسحها تُحفظ وتُحسب، مع سجل كامل.</string>
+    <string name="onb3_chip_month">هذا الشهر</string>
+    <string name="onb3_chip_spent">16,000</string>
+    <string name="onb3_chip_budget">/ 25,000</string>
+    <string name="onb3_chip_saved">تم حفظ الفاتورة</string>
+    <string name="onb3_chip_store">متجرك</string>
+    <string name="onb3_chip_history">السجل الشهري</string>
+
+    <!-- Tabs -->
+    <string name="tab_lists">قوائمي</string>
+    <string name="tab_bills">الفواتير</string>
+    <string name="tab_budget">الميزانية</string>
+    <string name="tab_settings">الإعدادات</string>
+
+    <!-- Common actions -->
+    <string name="action_done">تم</string>
+    <string name="action_save">حفظ</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_ok">موافق</string>
+    <string name="action_next">التالي</string>
+    <string name="action_back">رجوع</string>
+    <string name="action_add">إضافة</string>
+    <string name="action_add_selected">إضافة المحدد</string>
+    <string name="action_remove">إزالة</string>
+    <string name="action_clear">مسح</string>
+    <string name="action_edit">تعديل</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_move">نقل</string>
+    <string name="action_more">خيارات أخرى</string>
+    <string name="action_select_all">تحديد الكل</string>
+    <string name="action_clear_all">إلغاء الكل</string>
+    <string name="pick_time">اختر الوقت</string>
+
+    <plurals name="items_count">
+        <item quantity="zero">لا أغراض</item>
+        <item quantity="one">غرض واحد</item>
+        <item quantity="two">غرضان</item>
+        <item quantity="few">%d أغراض</item>
+        <item quantity="many">%d غرضًا</item>
+        <item quantity="other">%d غرض</item>
+    </plurals>
+
+    <!-- Lists tab -->
+    <string name="home_new_list">قائمة جديدة</string>
+    <string name="home_empty_title">لا توجد قوائم بعد</string>
+    <string name="home_empty_body">اضغط قائمة جديدة لإنشاء أول قائمة تسوّق.</string>
+    <string name="lists_active">للشراء</string>
+    <string name="lists_done">مكتملة</string>
+    <string name="lists_next_trip">رحلة التسوّق القادمة</string>
+    <plurals name="lists_remaining">
+        <item quantity="zero">لا أغراض متبقية</item>
+        <item quantity="one">غرض واحد متبقٍ من المرة الماضية</item>
+        <item quantity="two">غرضان متبقيان من المرة الماضية</item>
+        <item quantity="few">%d أغراض متبقية من المرة الماضية</item>
+        <item quantity="many">%d غرضًا متبقيًا من المرة الماضية</item>
+        <item quantity="other">%d غرض متبقٍ من المرة الماضية</item>
+    </plurals>
+    <string name="lists_remaining_hint">اضغط لبدء قائمة جديدة بها</string>
+    <string name="lists_done_on">اكتملت في %1$s</string>
+    <string name="lists_use_again">استخدام مرة أخرى</string>
+    <string name="list_delete_title">حذف هذه القائمة؟</string>
+    <string name="list_delete_body">ستُحذف القائمة وجميع أغراضها.</string>
+
+    <!-- Editor -->
+    <string name="editor_title_new">قائمة جديدة</string>
+    <string name="editor_title_edit">تعديل القائمة</string>
+    <string name="editor_default_name">تسوّق %1$s</string>
+    <string name="editor_name">اسم القائمة</string>
+    <string name="editor_when">متى ستذهب؟</string>
+    <string name="editor_when_hint">حدّد التاريخ والوقت لتصلك تذكرة</string>
+    <string name="editor_reminder_set">سنذكّرك قبل ساعة</string>
+    <string name="editor_add_items">إضافة أغراض</string>
+    <string name="method_voice">تحدّث</string>
+    <string name="method_scan">مسح</string>
+    <string name="method_old_list">قائمة قديمة</string>
+    <string name="method_remaining">متبقٍ من قبل (%1$d)</string>
+    <string name="editor_empty">لا أغراض بعد. اكتب بالأسفل أو تحدّث أو امسح قائمة.</string>
+    <string name="editor_type_item">أضف غرضًا</string>
+    <string name="editor_qty">الكمية</string>
+    <string name="editor_save_list">حفظ القائمة</string>
+    <string name="edit_item">تعديل الغرض</string>
+    <string name="item_name">الغرض</string>
+    <string name="remaining_title">المتبقي من المرة الماضية</string>
+    <string name="old_lists_title">افتح قائمة قديمة</string>
+    <string name="old_lists_empty">لا توجد قوائم قديمة بعد.</string>
+
+    <!-- Voice -->
+    <string name="voice_title">قل قائمتك</string>
+    <string name="voice_hint">قل الأغراض واحدًا تلو الآخر، مثل \"نصف كيلو سكر، 2 كيلو أرز و دزينة بيض\". ستُضاف أثناء حديثك. تتحدث بسرعة؟ قل \"و\" بين الأغراض.</string>
+    <string name="voice_added_hint">تمت الإضافة. اضغط ✕ إذا كان هناك خطأ وقله مرة أخرى.</string>
+    <string name="voice_remove_item">إزالة %1$s</string>
+    <string name="voice_listening">جارٍ الاستماع…</string>
+    <string name="voice_paused">اضغط الميكروفون للتحدث</string>
+    <string name="voice_start">بدء الاستماع</string>
+    <string name="voice_stop">إيقاف الاستماع</string>
+    <string name="voice_error">لم نتمكن من سماعك. اضغط الميكروفون مرة أخرى.</string>
+    <string name="voice_unavailable">الكتابة بالصوت غير متاحة على هذا الهاتف.</string>
+    <string name="voice_permission">اسمح باستخدام الميكروفون لإضافة الأغراض بالصوت.</string>
+
+    <!-- Scan -->
+    <string name="scan_language">لغة المسح</string>
+    <string name="scan_reading_list">جارٍ قراءة قائمتك</string>
+    <string name="scan_wait">يستغرق هذا بضع ثوانٍ…</string>
+    <string name="scan_found_title">الأغراض المكتشفة</string>
+    <string name="scan_unreadable">تعذّرت قراءة هذه الصفحة. جرّب صورة أوضح أو لغة أخرى.</string>
+    <string name="scan_needs_internet">يتطلب مسح العربية والأردية اتصالًا بالإنترنت.</string>
+    <string name="scan_unavailable">الماسح غير متاح على هذا الهاتف حاليًا.</string>
+
+    <!-- Shopping mode -->
+    <string name="shop_progress">%1$d من %2$d</string>
+    <plurals name="shop_move_remaining">
+        <item quantity="zero">لم تجده؟ انقله للمرة القادمة</item>
+        <item quantity="one">لم تجده؟ انقل غرضًا واحدًا للمرة القادمة</item>
+        <item quantity="two">لم تجدهما؟ انقل غرضين للمرة القادمة</item>
+        <item quantity="few">لم تجدها؟ انقل %d أغراض للمرة القادمة</item>
+        <item quantity="many">لم تجدها؟ انقل %d غرضًا للمرة القادمة</item>
+        <item quantity="other">لم تجدها؟ انقل %d غرض للمرة القادمة</item>
+    </plurals>
+    <string name="shop_move_title">نقل للمرة القادمة؟</string>
+    <plurals name="shop_move_body">
+        <item quantity="zero">لا توجد أغراض لنقلها.</item>
+        <item quantity="one">سيُحفظ الغرض الذي لم تجده، ويمكنك إضافته إلى قائمتك التالية.</item>
+        <item quantity="two">سيُحفظ الغرضان اللذان لم تجدهما، ويمكنك إضافتهما إلى قائمتك التالية.</item>
+        <item quantity="few">ستُحفظ %d أغراض لم تجدها، ويمكنك إضافتها إلى قائمتك التالية.</item>
+        <item quantity="many">سيُحفظ %d غرضًا لم تجده، ويمكنك إضافتها إلى قائمتك التالية.</item>
+        <item quantity="other">سيُحفظ %d غرض لم تجده، ويمكنك إضافتها إلى قائمتك التالية.</item>
+    </plurals>
+    <string name="shop_all_done">انتهيت!</string>
+    <string name="shop_scan_hint">أضف فاتورتك لحفظها وتتبّع مصروفك.</string>
+    <string name="shop_add_bill">إضافة فاتورة</string>
+    <string name="shop_scan_bill">مسح الفاتورة</string>
+    <string name="shop_finish_no_bill">إنهاء بدون فاتورة</string>
+
+    <!-- Bills -->
+    <string name="bills_empty_title">لا توجد فواتير بعد</string>
+    <string name="bills_empty_body">امسح الفاتورة بعد التسوّق وستظهر هنا.</string>
+    <string name="bills_add_manual">إضافة فاتورة يدويًا</string>
+    <string name="bill_title_new">فاتورة جديدة</string>
+    <string name="bill_title_edit">الفاتورة</string>
+    <string name="bill_untitled">فاتورة</string>
+    <string name="bill_image">صورة الفاتورة</string>
+    <string name="bill_reading">جارٍ قراءة الفاتورة…</string>
+    <string name="bill_store">المتجر / المحل / السوق</string>
+    <string name="bill_location">الموقع</string>
+    <string name="bill_use_location">استخدم موقعي</string>
+    <string name="bill_items">الأغراض</string>
+    <string name="bill_add_item">إضافة غرض</string>
+    <string name="bill_price">السعر</string>
+    <string name="bill_total">الإجمالي</string>
+    <string name="bill_use_sum">استخدم مجموع الأغراض (%1$s)</string>
+    <string name="bill_save">حفظ الفاتورة</string>
+    <string name="bill_add_items_by">أضف الأغراض عبر</string>
+    <string name="method_write">كتابة</string>
+    <string name="bill_voice_title">قل فاتورتك</string>
+    <string name="bill_voice_hint">قل كل غرض مع الكمية والسعر، مثل \"أرز 5 كيلو 25، حليب 2 علبة 12\". يمكن تعديل كل شيء لاحقًا.</string>
+    <string name="bill_items_empty">لا أغراض بعد. اكتب فاتورتك أو قلها أو امسحها.</string>
+    <string name="bill_scan_check">تمت القراءة من الصورة. يرجى مراجعة الأغراض والأسعار.</string>
+    <string name="bill_items_sum">مجموع الأغراض %1$s</string>
+    <string name="col_item">الغرض</string>
+    <string name="col_qty">الكمية</string>
+    <string name="col_price">السعر</string>
+    <string name="bill_synced">محفوظة على الإنترنت</string>
+    <string name="bill_not_synced">لم تُرفع بعد</string>
+    <string name="bill_delete_title">حذف هذه الفاتورة؟</string>
+    <string name="bill_delete_body">ستُحذف من هذا الهاتف ومن النسخة الاحتياطية على الإنترنت.</string>
+
+    <!-- Budget -->
+    <string name="budget_spent">المصروف هذا الشهر</string>
+    <string name="budget_none">حدّد ميزانية لتعرف كم تبقّى لك.</string>
+    <string name="budget_set">تحديد الميزانية الشهرية</string>
+    <string name="budget_set_title">ميزانية %1$s</string>
+    <string name="budget_set_body">يبدأ كل شهر بميزانية الشهر السابق، ويمكنك تغييرها في أي وقت.</string>
+    <string name="budget_of">من %1$s</string>
+    <string name="budget_left">متبقٍ %1$s</string>
+    <string name="budget_over">تجاوز الميزانية بـ %1$s</string>
+    <string name="budget_days_left">باقٍ %1$d يومًا في هذا الشهر</string>
+    <string name="budget_history">السجل</string>
+
+    <!-- Settings -->
+    <string name="settings_app_language">لغة التطبيق</string>
+    <string name="settings_app_language_hint">لغة القوائم والأزرار</string>
+    <string name="settings_input_language">لغة الصوت والمسح</string>
+    <string name="settings_input_language_hint">تُستخدم عند التحدث أو مسح قائمة أو فاتورة</string>
+    <string name="settings_theme">المظهر</string>
+    <string name="theme_system">النظام</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_dark">داكن</string>
+    <string name="settings_weekly">تذكير يوم السوق</string>
+    <string name="settings_weekly_hint">تذكير في الأيام التي تتسوّق فيها عادةً</string>
+    <string name="settings_weekly_time">ذكّرني الساعة %1$s</string>
+    <string name="settings_version">SmartCart %1$s</string>
+
+    <!-- Notifications -->
+    <string name="channel_trip">تذكيرات رحلة التسوّق</string>
+    <string name="channel_weekly">تذكيرات يوم السوق</string>
+    <string name="notif_trip_title">حان وقت التسوّق اليوم</string>
+    <plurals name="notif_trip_body">
+        <item quantity="zero">%1$s · بعد ساعة</item>
+        <item quantity="one">%1$s · غرض واحد · بعد ساعة</item>
+        <item quantity="two">%1$s · غرضان · بعد ساعة</item>
+        <item quantity="few">%1$s · %2$d أغراض · بعد ساعة</item>
+        <item quantity="many">%1$s · %2$d غرضًا · بعد ساعة</item>
+        <item quantity="other">%1$s · %2$d غرض · بعد ساعة</item>
+    </plurals>
+    <string name="notif_weekly_title">اليوم يوم السوق</string>
+    <string name="notif_weekly_body">جهّز قائمة التسوّق قبل أن تذهب.</string>
+</resources>
