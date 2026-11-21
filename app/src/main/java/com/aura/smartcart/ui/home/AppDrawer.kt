@@ -63,7 +63,8 @@ fun AppDrawer(vm: AccountViewModel, onClose: () -> Unit) {
     var confirmLogout by rememberSaveable { mutableStateOf(false) }
     val colors = MaterialTheme.colorScheme
 
-    ModalDrawerSheet(drawerContainerColor = colors.surface) {
+    // Default sheet is up to 360dp wide, which covers most of a phone screen.
+    ModalDrawerSheet(modifier = Modifier.width(280.dp), drawerContainerColor = colors.surface) {
         Column(
             Modifier
                 .verticalScroll(rememberScrollState())
@@ -85,7 +86,8 @@ fun AppDrawer(vm: AccountViewModel, onClose: () -> Unit) {
                 onClose(); uriHandler.openUri(Links.TERMS)
             }
             DrawerItem(Icons.Rounded.Feedback, stringResource(R.string.drawer_feedback)) {
-                onClose(); uriHandler.openUri(Links.FEEDBACK)
+                // No email app installed: openUri throws, so ignore instead of crashing.
+                onClose(); runCatching { uriHandler.openUri(Links.FEEDBACK) }
             }
 
             if (user != null) {
