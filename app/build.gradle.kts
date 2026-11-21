@@ -83,6 +83,10 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.ai)
+    // App Check: proves requests come from the real app (required by Firebase AI Logic).
+    // Release builds use Play Integrity; debug builds use a debug token registered in the console.
+    implementation(libs.firebase.appcheck.playintegrity)
+    debugImplementation(libs.firebase.appcheck.debug)
 
     // Google sign-in
     implementation(libs.androidx.credentials)
@@ -94,6 +98,8 @@ dependencies {
     implementation(libs.mlkit.text.recognition)
     implementation(libs.mlkit.text.recognition.devanagari)
     implementation(libs.mlkit.document.scanner)
+    // Offline Urdu/Arabic OCR (free, open source). Language files are in assets/tessdata.
+    implementation(libs.tesseract4android)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)

@@ -115,11 +115,11 @@
 
     <h3>3. Scanning, including Urdu and Arabic</h3>
     <ul>
-      <li><strong>On-device reading:</strong> for English, Roman Urdu and Hindi, the app first tries Google ML Kit, which reads
-        the text on your phone without sending the image anywhere.</li>
-      <li><strong>Gemini (online):</strong> for shopping lists, and for bills that ML Kit cannot read (including all Urdu and
-        Arabic text), the image is sent to Google's Gemini model through Firebase AI Logic. Gemini sends back only the text
-        it read. Google handles this data under its own terms, linked below. We do not keep these images on our servers.</li>
+      <li><strong>On-device reading:</strong> the app reads text on your phone without sending the image anywhere:
+        Google ML Kit for English, Roman Urdu and Hindi, and the open-source Tesseract OCR for Urdu and Arabic.</li>
+      <li><strong>Gemini (online):</strong> for shopping lists, and for bills the phone could not read, the image may be sent
+        to Google's Gemini model through Firebase AI Logic. Gemini sends back only the text it read. Google handles this data
+        under its own terms, linked below. We do not keep these images on our servers.</li>
     </ul>
 
     <h3>4. Permissions</h3>
@@ -186,7 +186,7 @@
       users' data, overloading the service, or reverse-engineering it to cause harm.</p>
 
     <h3>2. Accuracy of scans and voice input</h3>
-    <p>Scanning (ML Kit and Gemini) and voice input can make mistakes, especially with handwriting, blurry photos or
+    <p>Scanning (ML Kit, Tesseract and Gemini) and voice input can make mistakes, especially with handwriting, blurry photos or
       mixed languages. Always check items, quantities and prices before you save them. Budgets and totals in the app are
       for your information only and are not financial advice.</p>
 
@@ -199,7 +199,7 @@
       you have the right to use.</p>
 
     <h3>5. Internet features</h3>
-    <p>Cloud backup and Gemini scanning (including Urdu and Arabic) need an internet connection and depend on Google
+    <p>Cloud backup and Gemini scanning need an internet connection and depend on Google
       services. These features may change, slow down or be unavailable at times, and we cannot guarantee they will always work.</p>
 
     <h3>6. No warranty</h3>

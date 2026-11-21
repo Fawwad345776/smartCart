@@ -17,3 +17,9 @@ local.properties
 .kotlin
 *.apk
 *.aab
+
+# Signing keys and their passwords: never commit
+keystore
+*.keystore
+*.jks
+keystore.properties

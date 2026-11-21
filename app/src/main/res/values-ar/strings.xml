@@ -128,7 +128,7 @@
     <string name="scan_wait">يستغرق هذا بضع ثوانٍ…</string>
     <string name="scan_found_title">الأغراض المكتشفة</string>
     <string name="scan_unreadable">تعذّرت قراءة هذه الصفحة. جرّب صورة أوضح أو لغة أخرى.</string>
-    <string name="scan_needs_internet">يتطلب مسح العربية والأردية اتصالًا بالإنترنت.</string>
+    <string name="scan_needs_internet">تعذّرت القراءة. تُقرأ العربية والأردية المطبوعة دون إنترنت، أما خط اليد فلا يُقرأ إلا عبر الإنترنت. جرّب صورة أوضح أو أضف العناصر بالصوت.</string>
     <string name="scan_unavailable">الماسح غير متاح على هذا الهاتف حاليًا.</string>
 
     <!-- Shopping mode -->

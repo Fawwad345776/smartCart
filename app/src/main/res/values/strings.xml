@@ -122,7 +122,7 @@
     <string name="scan_wait">This takes a few seconds…</string>
     <string name="scan_found_title">Items found</string>
     <string name="scan_unreadable">Couldn\'t read this page. Try a clearer photo or another language.</string>
-    <string name="scan_needs_internet">Urdu and Arabic scanning needs an internet connection.</string>
+    <string name="scan_needs_internet">Couldn\'t read this. Printed Urdu and Arabic work offline, but handwriting can only be read online. Try a clearer photo, or add items by voice.</string>
     <string name="scan_unavailable">The scanner isn\'t available on this phone right now.</string>
 
     <!-- Shopping mode -->

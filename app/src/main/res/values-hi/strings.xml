@@ -120,7 +120,7 @@
     <string name="scan_wait">कुछ सेकंड लगेंगे…</string>
     <string name="scan_found_title">मिला हुआ सामान</string>
     <string name="scan_unreadable">यह पेज पढ़ा नहीं जा सका। साफ़ फ़ोटो लें या दूसरी भाषा चुनें।</string>
-    <string name="scan_needs_internet">उर्दू और अरबी स्कैन के लिए इंटरनेट ज़रूरी है।</string>
+    <string name="scan_needs_internet">पढ़ा नहीं जा सका। छपी हुई उर्दू और अरबी बिना इंटरनेट पढ़ी जाती है, लेकिन हाथ की लिखावट सिर्फ़ ऑनलाइन पढ़ी जा सकती है। साफ़ फ़ोटो लें या आवाज़ से आइटम जोड़ें।</string>
     <string name="scan_unavailable">अभी इस फ़ोन पर स्कैनर उपलब्ध नहीं है।</string>
 
     <!-- Shopping mode -->
