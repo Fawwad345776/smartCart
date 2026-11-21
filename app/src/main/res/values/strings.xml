@@ -200,6 +200,10 @@
     <string name="settings_weekly_hint">Get a reminder on the days you usually shop</string>
     <string name="settings_weekly_time">Remind me at %1$s</string>
     <string name="settings_version">SmartCart %1$s</string>
+    <string name="settings_legal">Privacy &amp; Terms</string>
+    <string name="settings_legal_hint">How SmartCart uses your data</string>
+    <string name="settings_privacy_policy">Privacy Policy</string>
+    <string name="settings_terms">Terms &amp; Conditions</string>
 
     <!-- Notifications -->
     <string name="channel_trip">Shopping trip reminders</string>

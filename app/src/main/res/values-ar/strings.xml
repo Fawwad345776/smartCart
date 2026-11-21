@@ -214,6 +214,10 @@
     <string name="settings_weekly_hint">تذكير في الأيام التي تتسوّق فيها عادةً</string>
     <string name="settings_weekly_time">ذكّرني الساعة %1$s</string>
     <string name="settings_version">SmartCart %1$s</string>
+    <string name="settings_legal">الخصوصية والشروط</string>
+    <string name="settings_legal_hint">كيف يستخدم SmartCart بياناتك</string>
+    <string name="settings_privacy_policy">سياسة الخصوصية</string>
+    <string name="settings_terms">الشروط والأحكام</string>
 
     <!-- Notifications -->
     <string name="channel_trip">تذكيرات رحلة التسوّق</string>

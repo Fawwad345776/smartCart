@@ -198,6 +198,10 @@
     <string name="settings_weekly_hint">जिन दिनों आप आमतौर पर ख़रीदारी करते हैं उन दिनों याद दिलाएँ</string>
     <string name="settings_weekly_time">%1$s पर याद दिलाएँ</string>
     <string name="settings_version">SmartCart %1$s</string>
+    <string name="settings_legal">प्राइवेसी और शर्तें</string>
+    <string name="settings_legal_hint">SmartCart आपका डेटा कैसे इस्तेमाल करता है</string>
+    <string name="settings_privacy_policy">प्राइवेसी पॉलिसी</string>
+    <string name="settings_terms">नियम और शर्तें</string>
 
     <!-- Notifications -->
     <string name="channel_trip">ख़रीदारी की याद</string>
