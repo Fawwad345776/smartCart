@@ -1,5 +1,11 @@
 package com.aura.smartcart.ui.home
 
+import androidx.activity.compose.BackHandler
+import androidx.compose.material.icons.rounded.Menu
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.rememberDrawerState
+import com.aura.smartcart.ui.account.accountViewModel
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -89,6 +95,14 @@ fun HomeScreen(
         }
     }
 
+    val accountVm = accountViewModel()
+    val drawerState = rememberDrawerState(DrawerValue.Closed)
+    BackHandler(enabled = drawerState.isOpen) { scope.launch { drawerState.close() } }
+
+    ModalNavigationDrawer(
+        drawerState = drawerState,
+        drawerContent = { AppDrawer(accountVm, onClose = { scope.launch { drawerState.close() } }) }
+    ) {
     Row(Modifier.fillMaxSize()) {
         if (wide) {
             NavigationRail(containerColor = colors.surfaceVariant) {
@@ -115,6 +129,11 @@ fun HomeScreen(
             topBar = {
                 TopAppBar(
                     title = { Text(stringResource(tab.title), style = MaterialTheme.typography.headlineMedium) },
+                    navigationIcon = {
+                        IconButton(onClick = { scope.launch { drawerState.open() } }) {
+                            Icon(Icons.Rounded.Menu, contentDescription = stringResource(R.string.drawer_open))
+                        }
+                    },
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = colors.background)
                 )
             },
@@ -158,6 +177,7 @@ fun HomeScreen(
         ) { padding ->
             Box(Modifier.fillMaxSize()) { content(padding) }
         }
+    }
     }
 
 }

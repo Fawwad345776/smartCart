@@ -214,10 +214,27 @@
     <string name="settings_weekly_hint">تذكير في الأيام التي تتسوّق فيها عادةً</string>
     <string name="settings_weekly_time">ذكّرني الساعة %1$s</string>
     <string name="settings_version">SmartCart %1$s</string>
-    <string name="settings_legal">الخصوصية والشروط</string>
-    <string name="settings_legal_hint">كيف يستخدم SmartCart بياناتك</string>
     <string name="settings_privacy_policy">سياسة الخصوصية</string>
     <string name="settings_terms">الشروط والأحكام</string>
+
+    <!-- Side menu -->
+    <string name="drawer_open">فتح القائمة</string>
+    <string name="drawer_guest">لم تسجّل الدخول</string>
+    <string name="drawer_guest_hint">سجّل الدخول لإضافة الفواتير وحفظها</string>
+    <string name="drawer_about">حول التطبيق</string>
+    <string name="drawer_feedback">أرسل ملاحظاتك</string>
+    <string name="about_body">أنشئ قوائم التسوق بالصوت أو الكتابة أو المسح الضوئي، واحفظ فواتيرك والتزم بميزانيتك الشهرية. يعمل بالإنجليزية والأردية والعربية والهندية.</string>
+    <string name="about_close">إغلاق</string>
+
+    <!-- Account -->
+    <string name="auth_sign_in_google">تسجيل الدخول عبر Google</string>
+    <string name="auth_sign_out">تسجيل الخروج</string>
+    <string name="auth_sign_out_confirm_title">تسجيل الخروج؟</string>
+    <string name="auth_sign_out_confirm_body">ستبقى فواتيرك على هذا الهاتف. ستحتاج إلى تسجيل الدخول مرة أخرى لإضافة فواتير جديدة.</string>
+    <string name="auth_required_title">سجّل الدخول لإضافة الفواتير</string>
+    <string name="auth_required_body">سجّل الدخول بحساب Google لإضافة الفواتير. سيتم حفظها بأمان في حسابك.</string>
+    <string name="auth_not_configured">تسجيل الدخول عبر Google غير مُعدّ بعد.</string>
+    <string name="auth_failed">تعذّر تسجيل الدخول. تحقق من الإنترنت وحاول مرة أخرى.</string>
 
     <!-- Notifications -->
     <string name="channel_trip">تذكيرات رحلة التسوّق</string>

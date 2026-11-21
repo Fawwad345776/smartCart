@@ -198,10 +198,27 @@
     <string name="settings_weekly_hint">جن دنوں آپ عام طور پر خریداری کرتے ہیں ان دن یاد دہانی</string>
     <string name="settings_weekly_time">%1$s پر یاد دلائیں</string>
     <string name="settings_version">SmartCart %1$s</string>
-    <string name="settings_legal">پرائیویسی اور شرائط</string>
-    <string name="settings_legal_hint">SmartCart آپ کا ڈیٹا کیسے استعمال کرتا ہے</string>
     <string name="settings_privacy_policy">پرائیویسی پالیسی</string>
     <string name="settings_terms">شرائط و ضوابط</string>
+
+    <!-- Side menu -->
+    <string name="drawer_open">مینو کھولیں</string>
+    <string name="drawer_guest">سائن اِن نہیں</string>
+    <string name="drawer_guest_hint">بل شامل کرنے اور محفوظ رکھنے کے لیے سائن اِن کریں</string>
+    <string name="drawer_about">ایپ کے بارے میں</string>
+    <string name="drawer_feedback">رائے بھیجیں</string>
+    <string name="about_body">آواز، ٹائپنگ یا اسکین سے شاپنگ لسٹ بنائیں، اپنے بل محفوظ کریں اور ماہانہ بجٹ میں رہیں۔ انگریزی، اردو، عربی اور ہندی میں کام کرتی ہے۔</string>
+    <string name="about_close">بند کریں</string>
+
+    <!-- Account -->
+    <string name="auth_sign_in_google">Google سے سائن اِن کریں</string>
+    <string name="auth_sign_out">لاگ آؤٹ</string>
+    <string name="auth_sign_out_confirm_title">لاگ آؤٹ کریں؟</string>
+    <string name="auth_sign_out_confirm_body">آپ کے بل اسی فون پر رہیں گے۔ نیا بل شامل کرنے کے لیے دوبارہ سائن اِن کرنا ہوگا۔</string>
+    <string name="auth_required_title">بل شامل کرنے کے لیے سائن اِن کریں</string>
+    <string name="auth_required_body">بل شامل کرنے کے لیے اپنے Google اکاؤنٹ سے سائن اِن کریں۔ آپ کے بل آپ کے اکاؤنٹ میں محفوظ رہیں گے۔</string>
+    <string name="auth_not_configured">Google سائن اِن ابھی سیٹ اپ نہیں ہوا۔</string>
+    <string name="auth_failed">سائن اِن نہیں ہو سکا۔ انٹرنیٹ چیک کر کے دوبارہ کوشش کریں۔</string>
 
     <!-- Notifications -->
     <string name="channel_trip">خریداری کی یاد دہانی</string>

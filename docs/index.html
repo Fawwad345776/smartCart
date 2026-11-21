@@ -70,15 +70,21 @@
       This policy explains what information the app uses, why, and where it goes.
       SmartCart does not show ads, does not sell your data, and does not use analytics or tracking tools.</p>
 
-    <h3>1. No account needed</h3>
-    <p>You do not create an account or give us your name, email or phone number. When the app first saves a bill
-      to the cloud, it signs in anonymously with Firebase Authentication (Google). This gives your phone a random ID
-      so its data stays separate from other users. The ID is not linked to your identity.</p>
+    <h3>1. Google sign-in</h3>
+    <p>You can make shopping lists and use the budget without an account. To add bills, you sign in with your
+      Google account through Firebase Authentication (Google). We then receive your <strong>name, email address and a
+      Google account ID</strong>. We use them only to show who is signed in and to keep your bills in your own account,
+      separate from other users. We never post anything to your Google account. You can log out at any time from the side menu.</p>
 
     <h3>2. Information the app uses</h3>
     <div class="table-scroll">
     <table>
       <tr><th>Information</th><th>Why</th><th>Where it is kept</th></tr>
+      <tr>
+        <td>Google account: name, email, account ID</td>
+        <td>Sign you in and link your bills to you</td>
+        <td>Firebase Authentication, and on your phone while signed in</td>
+      </tr>
       <tr>
         <td>Shopping lists, budget, reminders and settings</td>
         <td>Core app features</td>
@@ -87,7 +93,7 @@
       <tr>
         <td>Bills: store name, address, date, items, quantities, prices, total, currency, list name</td>
         <td>Show your spending history and keep a backup of your bills</td>
-        <td>On your phone, and copied to Google Cloud Firestore under your anonymous ID</td>
+        <td>On your phone, and copied to Google Cloud Firestore under your account</td>
       </tr>
       <tr>
         <td>Location (optional): latitude/longitude and an approximate area name when you save a bill</td>
@@ -140,7 +146,7 @@
       Information is only processed by the services listed above so the app can work, or if the law requires it.</p>
 
     <h3>7. Security</h3>
-    <p>Data sent to Google services is encrypted in transit (HTTPS). Firestore security rules allow each anonymous ID
+    <p>Data sent to Google services is encrypted in transit (HTTPS). Firestore security rules allow each signed-in account
       to read and write only its own bills. No method of storage or transfer is 100% secure, but we take reasonable steps
       to protect your information.</p>
 
@@ -148,8 +154,9 @@
     <ul>
       <li>Deleting a bill in the app also deletes its cloud copy.</li>
       <li>Uninstalling the app or clearing its data removes everything stored on your phone.</li>
-      <li>Your anonymous ID cannot be recovered after you uninstall, so delete your bills in the app first if you want the
-        cloud copies removed too. You can also contact us (section 11) to request deletion.</li>
+      <li>Logging out stops new bills from being added and backed up. Bills already on the phone stay there.</li>
+      <li>To delete your account and all cloud copies of your bills, contact us (section 11) from the email of your
+        Google account and we will remove them.</li>
     </ul>
 
     <h3>9. Children</h3>
@@ -179,30 +186,34 @@
       mixed languages. Always check items, quantities and prices before you save them. Budgets and totals in the app are
       for your information only and are not financial advice.</p>
 
-    <h3>3. Your content</h3>
+    <h3>3. Your account</h3>
+    <p>Adding bills needs a Google account. You are responsible for keeping access to your Google account safe.
+      We may suspend cloud access for accounts that misuse the service.</p>
+
+    <h3>4. Your content</h3>
     <p>Your lists, bills and photos belong to you. You are responsible for what you add, and for only scanning documents
       you have the right to use.</p>
 
-    <h3>4. Internet features</h3>
+    <h3>5. Internet features</h3>
     <p>Cloud backup and Gemini scanning (including Urdu and Arabic) need an internet connection and depend on Google
       services. These features may change, slow down or be unavailable at times, and we cannot guarantee they will always work.</p>
 
-    <h3>5. No warranty</h3>
+    <h3>6. No warranty</h3>
     <p>The app is provided "as is" and "as available", without warranties of any kind, express or implied, including
       fitness for a particular purpose and uninterrupted or error-free operation.</p>
 
-    <h3>6. Limitation of liability</h3>
+    <h3>7. Limitation of liability</h3>
     <p>To the fullest extent allowed by law, we are not liable for any indirect or consequential loss, or for any loss of data,
       money or profit, that comes from using or not being able to use the app, including errors in scanned or entered prices.</p>
 
-    <h3>7. Changes and termination</h3>
+    <h3>8. Changes and termination</h3>
     <p>We may update the app and these terms from time to time. Continuing to use the app after a change means you accept
       the new terms. You can stop using the app at any time by uninstalling it.</p>
 
-    <h3>8. Privacy</h3>
+    <h3>9. Privacy</h3>
     <p>How the app handles your information is described in the <a href="#privacy">Privacy Policy</a> above.</p>
 
-    <h3>9. Contact</h3>
+    <h3>10. Contact</h3>
     <p>Questions about these terms:
       <a href="https://github.com/Fawwad345776/smartCart/issues">github.com/Fawwad345776/smartCart/issues</a>.</p>
   </section>

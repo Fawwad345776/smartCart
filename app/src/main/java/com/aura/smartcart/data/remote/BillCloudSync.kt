@@ -8,20 +8,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 /**
- * Uploads bills to Firestore at users/{uid}/bills/{remoteId}.
- * The user is signed in anonymously, so no account screen is needed and each phone's data stays separate.
+ * Uploads bills to Firestore at users/{uid}/bills/{remoteId}, under the signed-in Google account.
+ * Signed out, nothing is uploaded: bills stay marked unsynced and go up after the next sign-in.
  */
 class BillCloudSync {
     // Created on first use, not at app start, so launching the app stays fast.
     private val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val firestore: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
-
-    private suspend fun uid(): String {
-        auth.currentUser?.let { return it.uid }
-        return auth.signInAnonymously().await().user?.uid
-            ?: error("Anonymous sign-in returned no user")
-    }
+    private fun uid(): String = auth.currentUser?.uid ?: error("Not signed in")
 
     /** Returns true when the bill is stored in the cloud. Never throws. */
     suspend fun upload(bill: BillEntity, items: List<BillItemEntity>): Boolean = try {

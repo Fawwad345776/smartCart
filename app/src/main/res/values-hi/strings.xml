@@ -198,10 +198,27 @@
     <string name="settings_weekly_hint">जिन दिनों आप आमतौर पर ख़रीदारी करते हैं उन दिनों याद दिलाएँ</string>
     <string name="settings_weekly_time">%1$s पर याद दिलाएँ</string>
     <string name="settings_version">SmartCart %1$s</string>
-    <string name="settings_legal">प्राइवेसी और शर्तें</string>
-    <string name="settings_legal_hint">SmartCart आपका डेटा कैसे इस्तेमाल करता है</string>
     <string name="settings_privacy_policy">प्राइवेसी पॉलिसी</string>
     <string name="settings_terms">नियम और शर्तें</string>
+
+    <!-- Side menu -->
+    <string name="drawer_open">मेन्यू खोलें</string>
+    <string name="drawer_guest">साइन इन नहीं</string>
+    <string name="drawer_guest_hint">बिल जोड़ने और सुरक्षित रखने के लिए साइन इन करें</string>
+    <string name="drawer_about">ऐप के बारे में</string>
+    <string name="drawer_feedback">फ़ीडबैक भेजें</string>
+    <string name="about_body">आवाज़, टाइपिंग या स्कैन से शॉपिंग लिस्ट बनाएं, अपने बिल सेव करें और महीने के बजट में रहें। अंग्रेज़ी, उर्दू, अरबी और हिंदी में काम करता है।</string>
+    <string name="about_close">बंद करें</string>
+
+    <!-- Account -->
+    <string name="auth_sign_in_google">Google से साइन इन करें</string>
+    <string name="auth_sign_out">लॉग आउट</string>
+    <string name="auth_sign_out_confirm_title">लॉग आउट करें?</string>
+    <string name="auth_sign_out_confirm_body">आपके बिल इसी फ़ोन पर रहेंगे। नया बिल जोड़ने के लिए फिर से साइन इन करना होगा।</string>
+    <string name="auth_required_title">बिल जोड़ने के लिए साइन इन करें</string>
+    <string name="auth_required_body">बिल जोड़ने के लिए अपने Google अकाउंट से साइन इन करें। आपके बिल आपके अकाउंट में सुरक्षित रहेंगे।</string>
+    <string name="auth_not_configured">Google साइन इन अभी सेट अप नहीं हुआ है।</string>
+    <string name="auth_failed">साइन इन नहीं हो सका। इंटरनेट जांचें और फिर कोशिश करें।</string>
 
     <!-- Notifications -->
     <string name="channel_trip">ख़रीदारी की याद</string>

@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.aura.smartcart.data.AppPreferences
 import com.aura.smartcart.data.WeeklyReminder
+import com.aura.smartcart.data.auth.AuthRepository
 import com.aura.smartcart.data.db.AppDatabase
 import com.aura.smartcart.data.remote.BillCloudSync
 import com.aura.smartcart.data.repo.BillRepository
@@ -31,6 +32,7 @@ class AppContainer(context: Context) {
     val budgets = BudgetRepository(db)
     val scanner = TextScanner(context, GeminiVision())
     val location = LocationHelper(context)
+    val auth = AuthRepository(context)
 }
 
 class SmartCartApp : Application() {

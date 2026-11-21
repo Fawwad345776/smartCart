@@ -31,14 +31,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.DarkMode
 import androidx.compose.material.icons.rounded.Language
 import androidx.compose.material.icons.rounded.Mic
-import androidx.compose.material.icons.rounded.Policy
 import androidx.compose.material.icons.rounded.Schedule
 import androidx.compose.material.icons.rounded.Storefront
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -51,7 +49,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
@@ -81,9 +78,6 @@ import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.time.format.TextStyle
 import java.util.Locale
-
-/** Privacy Policy + Terms page, hosted on GitHub Pages from the repo's docs/ folder. */
-private const val LEGAL_URL = "https://fawwad345776.github.io/smartCart/"
 
 class SettingsViewModel(private val container: AppContainer) : ViewModel() {
     val theme: StateFlow<ThemeMode> = container.prefs.themeMode
@@ -198,18 +192,6 @@ fun SettingsTab(contentPadding: PaddingValues) {
                         onPicked = { vm.updateWeekly(w.copy(minuteOfDay = it)); pickTime = false },
                         onDismiss = { pickTime = false }
                     )
-                }
-            }
-
-            val uriHandler = LocalUriHandler.current
-            SettingsCard(Icons.Rounded.Policy, stringResource(R.string.settings_legal), stringResource(R.string.settings_legal_hint)) {
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedButton(onClick = { uriHandler.openUri("$LEGAL_URL#privacy") }) {
-                        Text(stringResource(R.string.settings_privacy_policy))
-                    }
-                    OutlinedButton(onClick = { uriHandler.openUri("$LEGAL_URL#terms") }) {
-                        Text(stringResource(R.string.settings_terms))
-                    }
                 }
             }
 

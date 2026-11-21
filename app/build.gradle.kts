@@ -84,6 +84,11 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.ai)
 
+    // Google sign-in
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
+
     // Location, scanning, text recognition
     implementation(libs.play.services.location)
     implementation(libs.mlkit.text.recognition)

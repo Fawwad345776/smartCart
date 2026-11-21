@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.aura.smartcart.AppContainer
+import com.aura.smartcart.ui.account.SignInRequiredDialog
 import com.aura.smartcart.ui.bill.BillEditScreen
 import com.aura.smartcart.ui.editor.ListEditorScreen
 import com.aura.smartcart.ui.home.HomeScreen
@@ -52,6 +53,19 @@ fun AppNavigation(container: AppContainer, openListId: Long?, onOpenListHandled:
     val scope = rememberCoroutineScope()
     // Saved so it survives the activity being recreated (e.g. after changing the app language).
     var ready by rememberSaveable { mutableStateOf(false) }
+
+    // Adding a bill needs a Google account (bills are backed up to it). Signed out, the route
+    // waits here while the sign-in dialog is shown, and opens once sign-in succeeds.
+    var pendingBillRoute by rememberSaveable { mutableStateOf<String?>(null) }
+    val openNewBill: (String) -> Unit = { route ->
+        if (container.auth.isSignedIn()) nav.navigate(route) else pendingBillRoute = route
+    }
+    pendingBillRoute?.let { route ->
+        SignInRequiredDialog(
+            onSignedIn = { pendingBillRoute = null; nav.navigate(route) },
+            onDismiss = { pendingBillRoute = null }
+        )
+    }
 
     // A tapped shopping reminder opens that list once the app is past splash/onboarding.
     LaunchedEffect(openListId, ready) {
@@ -98,7 +112,7 @@ fun AppNavigation(container: AppContainer, openListId: Long?, onOpenListHandled:
                 onEditList = { nav.navigate(Routes.editor(listId = it)) },
                 onReuseList = { nav.navigate(Routes.editor(copyFrom = it)) },
                 onOpenBill = { nav.navigate(Routes.bill(billId = it)) },
-                onNewBill = { path -> nav.navigate(Routes.bill(imagePath = path)) }
+                onNewBill = { path -> openNewBill(Routes.bill(imagePath = path)) }
             )
         }
         composable(
@@ -126,7 +140,7 @@ fun AppNavigation(container: AppContainer, openListId: Long?, onOpenListHandled:
                 listId = listId,
                 onBack = { nav.popBackStack() },
                 onEdit = { nav.navigate(Routes.editor(listId = listId)) },
-                onAddBill = { nav.navigate(Routes.bill(listId = listId)) }
+                onAddBill = { openNewBill(Routes.bill(listId = listId)) }
             )
         }
         composable(

@@ -200,10 +200,27 @@
     <string name="settings_weekly_hint">Get a reminder on the days you usually shop</string>
     <string name="settings_weekly_time">Remind me at %1$s</string>
     <string name="settings_version">SmartCart %1$s</string>
-    <string name="settings_legal">Privacy &amp; Terms</string>
-    <string name="settings_legal_hint">How SmartCart uses your data</string>
     <string name="settings_privacy_policy">Privacy Policy</string>
     <string name="settings_terms">Terms &amp; Conditions</string>
+
+    <!-- Side menu -->
+    <string name="drawer_open">Open menu</string>
+    <string name="drawer_guest">Not signed in</string>
+    <string name="drawer_guest_hint">Sign in to add bills and back them up</string>
+    <string name="drawer_about">About</string>
+    <string name="drawer_feedback">Send feedback</string>
+    <string name="about_body">Make shopping lists by voice, typing or scanning, save your bills and stay within your monthly budget. Works in English, Urdu, Arabic and Hindi.</string>
+    <string name="about_close">Close</string>
+
+    <!-- Account -->
+    <string name="auth_sign_in_google">Sign in with Google</string>
+    <string name="auth_sign_out">Log out</string>
+    <string name="auth_sign_out_confirm_title">Log out?</string>
+    <string name="auth_sign_out_confirm_body">Your bills stay on this phone. You will need to sign in again to add new bills.</string>
+    <string name="auth_required_title">Sign in to add bills</string>
+    <string name="auth_required_body">Sign in with your Google account to add bills. They are backed up safely to your account.</string>
+    <string name="auth_not_configured">Google sign-in is not set up yet.</string>
+    <string name="auth_failed">Sign-in failed. Check your internet and try again.</string>
 
     <!-- Notifications -->
     <string name="channel_trip">Shopping trip reminders</string>
