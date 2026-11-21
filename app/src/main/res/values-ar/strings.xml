@@ -223,6 +223,8 @@
     <string name="drawer_guest_hint">سجّل الدخول لإضافة الفواتير وحفظها</string>
     <string name="drawer_about">حول التطبيق</string>
     <string name="drawer_feedback">أرسل ملاحظاتك</string>
+    <string name="feedback_write_here">اكتب ملاحظاتك هنا:</string>
+    <string name="feedback_no_email_app">لا يوجد تطبيق بريد إلكتروني على هذا الهاتف.</string>
     <string name="about_body">أنشئ قوائم التسوق بالصوت أو الكتابة أو المسح الضوئي، واحفظ فواتيرك والتزم بميزانيتك الشهرية. يعمل بالإنجليزية والأردية والعربية والهندية.</string>
     <string name="about_close">إغلاق</string>
 

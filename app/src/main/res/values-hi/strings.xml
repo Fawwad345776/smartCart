@@ -207,6 +207,8 @@
     <string name="drawer_guest_hint">बिल जोड़ने और सुरक्षित रखने के लिए साइन इन करें</string>
     <string name="drawer_about">ऐप के बारे में</string>
     <string name="drawer_feedback">फ़ीडबैक भेजें</string>
+    <string name="feedback_write_here">अपना फ़ीडबैक यहां लिखें:</string>
+    <string name="feedback_no_email_app">इस फ़ोन पर कोई ईमेल ऐप नहीं मिला।</string>
     <string name="about_body">आवाज़, टाइपिंग या स्कैन से शॉपिंग लिस्ट बनाएं, अपने बिल सेव करें और महीने के बजट में रहें। अंग्रेज़ी, उर्दू, अरबी और हिंदी में काम करता है।</string>
     <string name="about_close">बंद करें</string>
 

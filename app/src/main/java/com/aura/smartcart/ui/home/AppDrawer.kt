@@ -37,6 +37,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -49,6 +50,7 @@ import com.aura.smartcart.data.auth.AccountUser
 import com.aura.smartcart.ui.account.AccountViewModel
 import com.aura.smartcart.ui.account.GoogleSignInButton
 import com.aura.smartcart.ui.components.CartLogo
+import com.aura.smartcart.util.Feedback
 import com.aura.smartcart.util.Links
 
 /**
@@ -59,6 +61,7 @@ import com.aura.smartcart.util.Links
 fun AppDrawer(vm: AccountViewModel, onClose: () -> Unit) {
     val user by vm.user.collectAsStateWithLifecycle()
     val uriHandler = LocalUriHandler.current
+    val context = LocalContext.current
     var showAbout by rememberSaveable { mutableStateOf(false) }
     var confirmLogout by rememberSaveable { mutableStateOf(false) }
     val colors = MaterialTheme.colorScheme
@@ -86,8 +89,7 @@ fun AppDrawer(vm: AccountViewModel, onClose: () -> Unit) {
                 onClose(); uriHandler.openUri(Links.TERMS)
             }
             DrawerItem(Icons.Rounded.Feedback, stringResource(R.string.drawer_feedback)) {
-                // No email app installed: openUri throws, so ignore instead of crashing.
-                onClose(); runCatching { uriHandler.openUri(Links.FEEDBACK) }
+                onClose(); Feedback.open(context)
             }
 
             if (user != null) {

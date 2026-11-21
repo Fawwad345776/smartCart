@@ -207,6 +207,8 @@
     <string name="drawer_guest_hint">بل شامل کرنے اور محفوظ رکھنے کے لیے سائن اِن کریں</string>
     <string name="drawer_about">ایپ کے بارے میں</string>
     <string name="drawer_feedback">رائے بھیجیں</string>
+    <string name="feedback_write_here">اپنی رائے یہاں لکھیں:</string>
+    <string name="feedback_no_email_app">اس فون پر کوئی ای میل ایپ نہیں ملی۔</string>
     <string name="about_body">آواز، ٹائپنگ یا اسکین سے شاپنگ لسٹ بنائیں، اپنے بل محفوظ کریں اور ماہانہ بجٹ میں رہیں۔ انگریزی، اردو، عربی اور ہندی میں کام کرتی ہے۔</string>
     <string name="about_close">بند کریں</string>
 

@@ -5,5 +5,4 @@ object Links {
     private const val LEGAL = "https://fawwad345776.github.io/smartCart/"
     const val PRIVACY = "${LEGAL}#privacy"
     const val TERMS = "${LEGAL}#terms"
-    const val FEEDBACK = "mailto:fawwadshamim@gmail.com?subject=SmartCart%20feedback"
 }
