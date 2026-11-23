@@ -100,6 +100,8 @@ dependencies {
     implementation(libs.mlkit.document.scanner)
     // Offline Urdu/Arabic OCR (free, open source). Language files are in assets/tessdata.
     implementation(libs.tesseract4android)
+    // SmartCart Pro subscription (Google Play Billing).
+    implementation(libs.billing)
     // Video bill scanner: live camera frames read on the phone.
     implementation(libs.camerax.core)
     implementation(libs.camerax.camera2)

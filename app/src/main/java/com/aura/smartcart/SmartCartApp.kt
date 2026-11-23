@@ -13,6 +13,8 @@ import com.aura.smartcart.data.repo.ListRepository
 import com.aura.smartcart.service.location.LocationHelper
 import com.aura.smartcart.service.notify.Notifier
 import com.aura.smartcart.service.notify.ReminderScheduler
+import com.aura.smartcart.data.ScanQuota
+import com.aura.smartcart.service.billing.ProBilling
 import com.aura.smartcart.service.scan.TesseractOcr
 import com.aura.smartcart.service.scan.TextScanner
 import com.aura.smartcart.util.Country
@@ -33,6 +35,8 @@ class AppContainer(context: Context) {
     val scanner = TextScanner(context, TesseractOcr(context))
     val location = LocationHelper(context)
     val auth = AuthRepository(context)
+    val pro = ProBilling(context)
+    val quota = ScanQuota(appContext) { pro.isPro.value }
 }
 
 class SmartCartApp : Application() {
@@ -47,6 +51,8 @@ class SmartCartApp : Application() {
         AppCheckSetup.install()
         container = AppContainer(this)
         Notifier.createChannels(this)
+        // Refresh Pro status (e.g. a subscription that ended or was bought on another phone).
+        container.pro.connect()
 
         appScope.launch {
             val prefs = container.prefs

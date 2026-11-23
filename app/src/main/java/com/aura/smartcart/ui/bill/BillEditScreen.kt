@@ -101,6 +101,7 @@ import com.aura.smartcart.ui.common.appViewModel
 import com.aura.smartcart.ui.common.rememberDocumentScanner
 import com.aura.smartcart.ui.common.scanErrorText
 import com.aura.smartcart.ui.common.toast
+import com.aura.smartcart.data.ScanKind
 import androidx.core.content.ContextCompat
 import com.aura.smartcart.ui.components.SystemBarIcons
 import com.aura.smartcart.ui.editor.ScanProblem
@@ -119,6 +120,7 @@ fun BillEditScreen(
     listId: Long?,
     imagePath: String?,
     onBack: () -> Unit,
+    onOpenPro: () -> Unit,
     onSaved: () -> Unit
 ) {
     val vm = appViewModel(key = "bill_${billId}_${listId}_$imagePath") { BillEditViewModel(it, billId, listId, imagePath) }
@@ -173,6 +175,18 @@ fun BillEditScreen(
             vm.startVideo(); showVideo = true
         } else {
             cameraPermission.launch(Manifest.permission.CAMERA)
+        }
+    }
+
+    // Free users: 10 photo and 3 video bill scans a month, then the Pro screen opens.
+    val openPhoto: () -> Unit = {
+        scope.launch {
+            if (vm.canScan(ScanKind.BILL_PHOTO)) startScan() else { context.toast(R.string.quota_reached); onOpenPro() }
+        }
+    }
+    val openVideo: () -> Unit = {
+        scope.launch {
+            if (vm.canScan(ScanKind.BILL_VIDEO)) startVideo() else { context.toast(R.string.quota_reached); onOpenPro() }
         }
     }
 
@@ -236,8 +250,8 @@ fun BillEditScreen(
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         BillMethod(Icons.Rounded.EditNote, stringResource(R.string.method_write), Modifier.weight(1f)) { vm.addItem() }
                         BillMethod(Icons.Rounded.Mic, stringResource(R.string.method_voice), Modifier.weight(1f)) { showVoice = true }
-                        BillMethod(Icons.Rounded.DocumentScanner, stringResource(R.string.bill_method_photo), Modifier.weight(1f)) { startScan() }
-                        BillMethod(Icons.Rounded.Videocam, stringResource(R.string.bill_method_video), Modifier.weight(1f)) { startVideo() }
+                        BillMethod(Icons.Rounded.DocumentScanner, stringResource(R.string.bill_method_photo), Modifier.weight(1f)) { openPhoto() }
+                        BillMethod(Icons.Rounded.Videocam, stringResource(R.string.bill_method_video), Modifier.weight(1f)) { openVideo() }
                     }
                     Spacer(Modifier.height(6.dp))
                     Text(

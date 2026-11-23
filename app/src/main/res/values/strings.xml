@@ -245,4 +245,26 @@
     <string name="video_done">Done</string>
     <string name="video_flash">Flash</string>
     <string name="camera_permission_needed">Camera permission is needed for video scan.</string>
+    <string name="pro_title">SmartCart Pro</string>
+    <string name="pro_subtitle">Scan as much as you like and save money on every shopping trip.</string>
+    <string name="pro_feature_scan_title">Unlimited scan</string>
+    <string name="pro_feature_scan_body">Bill photo, bill video and list scans with no monthly limit.</string>
+    <string name="pro_feature_rate_title">Cheaper price alerts</string>
+    <string name="pro_feature_rate_body">Get notified when someone nearby bought your item for less, and where.</string>
+    <string name="pro_feature_plan_title">Smart Store Plan</string>
+    <string name="pro_feature_plan_body">Pick a distance and see which nearby shop is cheaper for each item on your list.</string>
+    <string name="pro_coming_soon">Coming soon</string>
+    <string name="pro_free_usage">Free scans this month</string>
+    <string name="pro_usage_bill_photo">Bill photo: %1$d / %2$d</string>
+    <string name="pro_usage_bill_video">Bill video: %1$d / %2$d</string>
+    <string name="pro_usage_list">List scan: %1$d / %2$d</string>
+    <string name="pro_subscribe">Subscribe</string>
+    <string name="pro_period_month">per month</string>
+    <string name="pro_period_year">per year</string>
+    <string name="pro_active">You\'re a Pro member</string>
+    <string name="pro_manage">Manage subscription</string>
+    <string name="pro_restore">Restore purchase</string>
+    <string name="pro_unavailable">Subscriptions aren\'t available right now. Make sure you\'re online and the app is installed from Google Play.</string>
+    <string name="pro_cancel_note">Cancel anytime in Google Play.</string>
+    <string name="quota_reached">This month\'s free scans are used up. Get Pro for unlimited scans.</string>
 </resources>

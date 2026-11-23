@@ -23,6 +23,7 @@ import com.aura.smartcart.ui.bill.BillEditScreen
 import com.aura.smartcart.ui.editor.ListEditorScreen
 import com.aura.smartcart.ui.home.HomeScreen
 import com.aura.smartcart.ui.onboarding.OnboardingScreen
+import com.aura.smartcart.ui.pro.ProScreen
 import com.aura.smartcart.ui.shop.ShopScreen
 import com.aura.smartcart.ui.splash.SplashScreen
 import kotlinx.coroutines.flow.first
@@ -35,6 +36,7 @@ object Routes {
     const val EDITOR = "editor?listId={listId}&copyFrom={copyFrom}"
     const val SHOP = "shop/{listId}"
     const val BILL = "bill?billId={billId}&listId={listId}&image={image}"
+    const val PRO = "pro"
 
     fun editor(listId: Long? = null, copyFrom: Long? = null) =
         "editor?listId=${listId ?: -1}&copyFrom=${copyFrom ?: -1}"
@@ -112,7 +114,8 @@ fun AppNavigation(container: AppContainer, openListId: Long?, onOpenListHandled:
                 onEditList = { nav.navigate(Routes.editor(listId = it)) },
                 onReuseList = { nav.navigate(Routes.editor(copyFrom = it)) },
                 onOpenBill = { nav.navigate(Routes.bill(billId = it)) },
-                onNewBill = { path -> openNewBill(Routes.bill(imagePath = path)) }
+                onNewBill = { path -> openNewBill(Routes.bill(imagePath = path)) },
+                onOpenPro = { nav.navigate(Routes.PRO) { launchSingleTop = true } }
             )
         }
         composable(
@@ -128,7 +131,8 @@ fun AppNavigation(container: AppContainer, openListId: Long?, onOpenListHandled:
                 listId = listId,
                 copyFrom = copyFrom,
                 onBack = { nav.popBackStack() },
-                onSaved = { savedId -> nav.openShopAfterEdit(savedId) }
+                onSaved = { savedId -> nav.openShopAfterEdit(savedId) },
+                onOpenPro = { nav.navigate(Routes.PRO) { launchSingleTop = true } }
             )
         }
         composable(
@@ -159,11 +163,15 @@ fun AppNavigation(container: AppContainer, openListId: Long?, onOpenListHandled:
                 listId = listId,
                 imagePath = image,
                 onBack = { nav.popBackStack() },
+                onOpenPro = { nav.navigate(Routes.PRO) { launchSingleTop = true } },
                 onSaved = {
                     // After saving a bill for a list, go back home (the list is finished).
                     if (listId != null) nav.popBackStack(Routes.HOME, inclusive = false) else nav.popBackStack()
                 }
             )
+        }
+        composable(Routes.PRO) {
+            ProScreen(onBack = { nav.popBackStack() })
         }
     }
 }

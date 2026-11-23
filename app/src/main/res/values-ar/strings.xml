@@ -263,4 +263,26 @@
     <string name="video_done">تم</string>
     <string name="video_flash">الفلاش</string>
     <string name="camera_permission_needed">يلزم إذن الكاميرا للمسح بالفيديو.</string>
+    <string name="pro_title">SmartCart Pro</string>
+    <string name="pro_subtitle">امسح كما تشاء ووفّر المال في كل تسوّق.</string>
+    <string name="pro_feature_scan_title">مسح غير محدود</string>
+    <string name="pro_feature_scan_body">صورة الفاتورة وفيديو الفاتورة ومسح القائمة دون حدّ شهري.</string>
+    <string name="pro_feature_rate_title">تنبيه السعر الأرخص</string>
+    <string name="pro_feature_rate_body">تلقَّ إشعارًا عندما يشتري أحد بالقرب منك نفس الغرض بسعر أقل، ومن أين.</string>
+    <string name="pro_feature_plan_title">خطة المتجر الذكية</string>
+    <string name="pro_feature_plan_body">اختر المسافة وشاهد أي متجر قريب أرخص لكل غرض في قائمتك.</string>
+    <string name="pro_coming_soon">قريبًا</string>
+    <string name="pro_free_usage">المسح المجاني هذا الشهر</string>
+    <string name="pro_usage_bill_photo">صورة الفاتورة: %1$d / %2$d</string>
+    <string name="pro_usage_bill_video">فيديو الفاتورة: %1$d / %2$d</string>
+    <string name="pro_usage_list">مسح القائمة: %1$d / %2$d</string>
+    <string name="pro_subscribe">اشترك</string>
+    <string name="pro_period_month">شهريًا</string>
+    <string name="pro_period_year">سنويًا</string>
+    <string name="pro_active">أنت عضو Pro</string>
+    <string name="pro_manage">إدارة الاشتراك</string>
+    <string name="pro_restore">استعادة الشراء</string>
+    <string name="pro_unavailable">الاشتراكات غير متاحة الآن. تأكد من الاتصال بالإنترنت وأن التطبيق مثبّت من Google Play.</string>
+    <string name="pro_cancel_note">يمكنك الإلغاء في أي وقت من Google Play.</string>
+    <string name="quota_reached">انتهى المسح المجاني لهذا الشهر. اشترك في Pro لمسح غير محدود.</string>
 </resources>

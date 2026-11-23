@@ -1,5 +1,6 @@
 package com.aura.smartcart.ui.editor
 
+import com.aura.smartcart.data.ScanKind
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -169,7 +170,11 @@ class EditorViewModel(
         if (_state.value.name.isBlank()) setName(list.list.name)
     }
 
+    /** False when this month's free list scans are used up (and the user is not Pro). */
+    suspend fun canScan(): Boolean = container.quota.canUse(ScanKind.LIST)
+
     fun scanList(uri: Uri) {
+        viewModelScope.launch { container.quota.recordUse(ScanKind.LIST) }
         lastScanUri = uri
         runScan(uri, inputLanguage.value)
     }

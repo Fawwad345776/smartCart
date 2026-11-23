@@ -82,6 +82,9 @@ import com.aura.smartcart.ui.common.VoiceInputSheet
 import com.aura.smartcart.ui.common.appViewModel
 import com.aura.smartcart.ui.common.rememberDocumentScanner
 import com.aura.smartcart.ui.common.scanErrorText
+import com.aura.smartcart.ui.common.toast
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
 import com.aura.smartcart.ui.components.SystemBarIcons
 import com.aura.smartcart.ui.theme.Brand
 import com.aura.smartcart.util.Dates
@@ -94,7 +97,8 @@ fun ListEditorScreen(
     listId: Long?,
     copyFrom: Long?,
     onBack: () -> Unit,
-    onSaved: (Long) -> Unit
+    onSaved: (Long) -> Unit,
+    onOpenPro: () -> Unit
 ) {
     val vm = appViewModel(key = "editor_${listId}_$copyFrom") { EditorViewModel(it, listId, copyFrom) }
     val state by vm.state.collectAsStateWithLifecycle()
@@ -121,6 +125,13 @@ fun ListEditorScreen(
         } else doSave()
     }
     val startScan = rememberDocumentScanner { vm.scanList(it) }
+    val scope = rememberCoroutineScope()
+    // Free users: 3 list scans a month, then the Pro screen opens.
+    val openScan: () -> Unit = {
+        scope.launch {
+            if (vm.canScan()) startScan() else { context.toast(R.string.quota_reached); onOpenPro() }
+        }
+    }
 
     Scaffold(
         containerColor = colors.background,
@@ -212,7 +223,7 @@ fun ListEditorScreen(
                         horizontalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         MethodCard(Icons.Rounded.Mic, stringResource(R.string.method_voice)) { sheet = Sheet.VOICE }
-                        MethodCard(Icons.Rounded.DocumentScanner, stringResource(R.string.method_scan)) { startScan() }
+                        MethodCard(Icons.Rounded.DocumentScanner, stringResource(R.string.method_scan)) { openScan() }
                         MethodCard(Icons.Rounded.History, stringResource(R.string.method_old_list)) {
                             vm.loadOldLists(); sheet = Sheet.OLD_LISTS
                         }

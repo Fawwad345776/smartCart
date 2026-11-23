@@ -243,4 +243,26 @@
     <string name="video_done">ہو گیا</string>
     <string name="video_flash">فلیش</string>
     <string name="camera_permission_needed">ویڈیو اسکین کے لیے کیمرے کی اجازت ضروری ہے۔</string>
+    <string name="pro_title">SmartCart Pro</string>
+    <string name="pro_subtitle">جتنا چاہیں اسکین کریں اور ہر خریداری پر پیسے بچائیں۔</string>
+    <string name="pro_feature_scan_title">لامحدود اسکین</string>
+    <string name="pro_feature_scan_body">بل کی فوٹو، بل کی ویڈیو اور لسٹ اسکین — کوئی ماہانہ حد نہیں۔</string>
+    <string name="pro_feature_rate_title">سستے ریٹ کا الرٹ</string>
+    <string name="pro_feature_rate_body">جب قریب میں کوئی آپ کی چیز کم قیمت میں لے تو اطلاع ملے، اور کہاں سے۔</string>
+    <string name="pro_feature_plan_title">اسمارٹ اسٹور پلان</string>
+    <string name="pro_feature_plan_body">فاصلہ چنیں اور دیکھیں کہ آپ کی لسٹ کی ہر چیز کس قریبی دکان پر سستی ہے۔</string>
+    <string name="pro_coming_soon">جلد آ رہا ہے</string>
+    <string name="pro_free_usage">اس مہینے کے مفت اسکین</string>
+    <string name="pro_usage_bill_photo">بل فوٹو: %1$d / %2$d</string>
+    <string name="pro_usage_bill_video">بل ویڈیو: %1$d / %2$d</string>
+    <string name="pro_usage_list">لسٹ اسکین: %1$d / %2$d</string>
+    <string name="pro_subscribe">سبسکرائب کریں</string>
+    <string name="pro_period_month">ماہانہ</string>
+    <string name="pro_period_year">سالانہ</string>
+    <string name="pro_active">آپ Pro ممبر ہیں</string>
+    <string name="pro_manage">سبسکرپشن منیج کریں</string>
+    <string name="pro_restore">خریداری بحال کریں</string>
+    <string name="pro_unavailable">سبسکرپشن ابھی دستیاب نہیں۔ انٹرنیٹ چیک کریں اور ایپ Google Play سے انسٹال ہونی چاہیے۔</string>
+    <string name="pro_cancel_note">Google Play سے کبھی بھی کینسل کر سکتے ہیں۔</string>
+    <string name="quota_reached">اس مہینے کے مفت اسکین ختم ہو گئے۔ لامحدود اسکین کے لیے Pro لیں۔</string>
 </resources>

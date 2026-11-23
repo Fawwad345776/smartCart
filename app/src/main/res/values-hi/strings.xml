@@ -243,4 +243,26 @@
     <string name="video_done">हो गया</string>
     <string name="video_flash">फ़्लैश</string>
     <string name="camera_permission_needed">वीडियो स्कैन के लिए कैमरे की अनुमति ज़रूरी है।</string>
+    <string name="pro_title">SmartCart Pro</string>
+    <string name="pro_subtitle">जितना चाहें स्कैन करें और हर ख़रीदारी पर पैसे बचाएँ।</string>
+    <string name="pro_feature_scan_title">अनलिमिटेड स्कैन</string>
+    <string name="pro_feature_scan_body">बिल फ़ोटो, बिल वीडियो और लिस्ट स्कैन — कोई मासिक सीमा नहीं।</string>
+    <string name="pro_feature_rate_title">सस्ते रेट का अलर्ट</string>
+    <string name="pro_feature_rate_body">जब पास में कोई आपकी चीज़ कम दाम में ले तो सूचना मिले, और कहाँ से।</string>
+    <string name="pro_feature_plan_title">स्मार्ट स्टोर प्लान</string>
+    <string name="pro_feature_plan_body">दूरी चुनें और देखें कि आपकी लिस्ट की हर चीज़ किस पास की दुकान पर सस्ती है।</string>
+    <string name="pro_coming_soon">जल्द आ रहा है</string>
+    <string name="pro_free_usage">इस महीने के मुफ़्त स्कैन</string>
+    <string name="pro_usage_bill_photo">बिल फ़ोटो: %1$d / %2$d</string>
+    <string name="pro_usage_bill_video">बिल वीडियो: %1$d / %2$d</string>
+    <string name="pro_usage_list">लिस्ट स्कैन: %1$d / %2$d</string>
+    <string name="pro_subscribe">सब्सक्राइब करें</string>
+    <string name="pro_period_month">हर महीने</string>
+    <string name="pro_period_year">हर साल</string>
+    <string name="pro_active">आप Pro सदस्य हैं</string>
+    <string name="pro_manage">सब्सक्रिप्शन मैनेज करें</string>
+    <string name="pro_restore">ख़रीदारी वापस लाएँ</string>
+    <string name="pro_unavailable">सब्सक्रिप्शन अभी उपलब्ध नहीं। इंटरनेट जाँचें और ऐप Google Play से इंस्टॉल होना चाहिए।</string>
+    <string name="pro_cancel_note">Google Play से कभी भी कैंसल कर सकते हैं।</string>
+    <string name="quota_reached">इस महीने के मुफ़्त स्कैन ख़त्म हो गए। अनलिमिटेड स्कैन के लिए Pro लें।</string>
 </resources>

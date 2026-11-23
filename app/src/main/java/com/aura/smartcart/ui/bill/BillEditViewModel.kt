@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aura.smartcart.AppContainer
+import com.aura.smartcart.data.ScanKind
 import com.aura.smartcart.data.repo.BillDraft
 import com.aura.smartcart.data.repo.BillDraftItem
 import com.aura.smartcart.service.scan.BillScan
@@ -194,6 +195,7 @@ class BillEditViewModel(
 
     /** A bill photo from the scanner (already copied into app storage). */
     fun scanImage(path: String) {
+        viewModelScope.launch { container.quota.recordUse(ScanKind.BILL_PHOTO) }
         _state.update { it.copy(draft = it.draft.copy(imagePath = path)) }
         read(inputLanguage.value)
     }
@@ -245,7 +247,16 @@ class BillEditViewModel(
     /** Items confirmed so far by the video scanner. */
     val videoFound: StateFlow<Int> = _videoFound.asStateFlow()
 
+    /** False when this month's free scans of [kind] are used up (and the user is not Pro). */
+    suspend fun canScan(kind: ScanKind): Boolean = container.quota.canUse(kind)
+
+    /** Opens a new video scan session (counts as one video scan). */
     fun startVideo() {
+        resetVideo()
+        viewModelScope.launch { container.quota.recordUse(ScanKind.BILL_VIDEO) }
+    }
+
+    private fun resetVideo() {
         video.clear()
         _videoFound.value = 0
     }
@@ -264,7 +275,7 @@ class BillEditViewModel(
     /** Done in the video scanner: puts the collected lines into the bill. False if nothing was read. */
     fun finishVideo(): Boolean {
         val r = video.result()
-        startVideo()
+        resetVideo()
         if (r.items.isEmpty()) return false
         applyScan(
             BillScan(
