@@ -13,7 +13,6 @@ import com.aura.smartcart.data.repo.ListRepository
 import com.aura.smartcart.service.location.LocationHelper
 import com.aura.smartcart.service.notify.Notifier
 import com.aura.smartcart.service.notify.ReminderScheduler
-import com.aura.smartcart.service.scan.GeminiVision
 import com.aura.smartcart.service.scan.TesseractOcr
 import com.aura.smartcart.service.scan.TextScanner
 import com.aura.smartcart.util.Country
@@ -31,7 +30,7 @@ class AppContainer(context: Context) {
     val lists = ListRepository(db)
     val bills = BillRepository(db, BillCloudSync())
     val budgets = BudgetRepository(db)
-    val scanner = TextScanner(context, GeminiVision(), TesseractOcr(context))
+    val scanner = TextScanner(context, TesseractOcr(context))
     val location = LocationHelper(context)
     val auth = AuthRepository(context)
 }

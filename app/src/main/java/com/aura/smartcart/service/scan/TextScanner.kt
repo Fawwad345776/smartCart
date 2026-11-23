@@ -17,18 +17,17 @@ import kotlinx.coroutines.withContext
 sealed interface ScanOutcome<out T> {
     data class Success<T>(val value: T) : ScanOutcome<T>
     data object Unreadable : ScanOutcome<Nothing>
-    /** Urdu/Arabic the phone could not read (usually handwriting): only Gemini (online) can read it. */
+    /** Not used by the offline scanner any more; kept for a future online (Premium) scanner. */
     data object NeedsInternet : ScanOutcome<Nothing>
 }
 
 /**
- * Reads scanned lists and bills in the chosen language.
- * Gemini is tried first for lists (best with handwriting) when it is available. Offline fallbacks:
- * ML Kit for English, Roman Urdu and Hindi; Tesseract for Urdu and Arabic. All of them are free.
+ * Reads scanned lists and bills in the chosen language, fully on the phone (free, offline):
+ * ML Kit for English, Roman Urdu and Hindi; Tesseract for Urdu and Arabic.
+ * Only printed text is read. Handwriting comes back as Unreadable, and the app offers voice input instead.
  */
 class TextScanner(
     private val context: Context,
-    private val gemini: GeminiVision,
     private val tesseract: TesseractOcr
 ) {
 
@@ -36,22 +35,18 @@ class TextScanner(
         val bitmap = withContext(Dispatchers.IO) { ImageLoader.loadScaled(context, uri, maxDim = 2200) }
             ?: return ScanOutcome.Unreadable
 
-        gemini.readListLines(bitmap, language.englishName())?.takeIf { it.isNotEmpty() }?.let {
-            return ScanOutcome.Success(it)
+        // Printed text only: Tesseract drops low-confidence lines, so handwriting comes back empty.
+        val lines = if (language.script == Script.ARABIC) {
+            tesseractRows(bitmap, language.tesseractCode())
+        } else {
+            onDeviceLines(bitmap, language.script)
         }
-
-        if (language.script == Script.ARABIC) {
-            val lines = tesseractRows(bitmap, language.tesseractCode())
-            // Offline OCR reads printed Urdu/Arabic only; handwriting needs Gemini (online).
-            return if (lines.isEmpty()) ScanOutcome.NeedsInternet else ScanOutcome.Success(lines)
-        }
-        val lines = onDeviceLines(bitmap, language.script)
         return if (lines.isEmpty()) ScanOutcome.Unreadable else ScanOutcome.Success(lines)
     }
 
     /**
-     * Bills: on-device OCR first (fast, offline, free) — ML Kit, or Tesseract for Urdu/Arabic. Each
-     * printed line is split into Item / Qty / Price. Gemini is used when OCR finds no priced items.
+     * Bills: on-device OCR (fast, offline, free) — ML Kit, or Tesseract for Urdu/Arabic. Each
+     * printed line is split into Item / Qty / Price.
      */
     suspend fun readBill(uri: Uri, language: InputLanguage): ScanOutcome<BillScan> {
         val bitmap = withContext(Dispatchers.IO) { ImageLoader.loadScaled(context, uri, maxDim = 2200) }
@@ -78,10 +73,7 @@ class TextScanner(
             }
         }
 
-        gemini.readBill(bitmap, language.englishName())?.takeIf { it.items.isNotEmpty() || it.total > 0 }?.let {
-            return ScanOutcome.Success(it)
-        }
-        return if (language.script == Script.ARABIC) ScanOutcome.NeedsInternet else ScanOutcome.Unreadable
+        return ScanOutcome.Unreadable
     }
 
     /**
@@ -202,11 +194,4 @@ class TextScanner(
     /** Tesseract language file for Arabic-script input. */
     private fun InputLanguage.tesseractCode(): String = if (this == InputLanguage.ARABIC) "ara" else "urd"
 
-    private fun InputLanguage.englishName(): String = when (this) {
-        InputLanguage.ENGLISH -> "English"
-        InputLanguage.ROMAN_URDU -> "Roman Urdu (Urdu written in English letters)"
-        InputLanguage.URDU -> "Urdu"
-        InputLanguage.HINDI -> "Hindi"
-        InputLanguage.ARABIC -> "Arabic"
-    }
 }

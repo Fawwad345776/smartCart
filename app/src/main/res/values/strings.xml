@@ -121,7 +121,9 @@
     <string name="scan_reading_list">Reading your list</string>
     <string name="scan_wait">This takes a few seconds…</string>
     <string name="scan_found_title">Items found</string>
-    <string name="scan_unreadable">Couldn\'t read this page. Try a clearer photo or another language.</string>
+    <string name="scan_unreadable">Couldn\'t read this page. Only printed lists can be scanned — if it\'s handwritten, tap Speak and say your items.</string>
+    <string name="scan_printed_hint">Scan reads printed lists only. Handwritten? Use Speak.</string>
+    <string name="scan_use_voice">Speak your list instead</string>
     <string name="scan_needs_internet">Couldn\'t read this. Printed Urdu and Arabic work offline, but handwriting can only be read online. Try a clearer photo, or add items by voice.</string>
     <string name="scan_unavailable">The scanner isn\'t available on this phone right now.</string>
 

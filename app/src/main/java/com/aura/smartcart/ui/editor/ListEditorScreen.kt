@@ -225,6 +225,12 @@ fun ListEditorScreen(
                             ) { sheet = Sheet.REMAINING }
                         }
                     }
+                    Spacer(Modifier.height(6.dp))
+                    Text(
+                        stringResource(R.string.scan_printed_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = colors.onSurfaceVariant
+                    )
                 }
                 item {
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -361,6 +367,12 @@ fun ListEditorScreen(
                             style = MaterialTheme.typography.bodySmall,
                             color = colors.error
                         )
+                        // Handwritten list: offer voice input straight away.
+                        TextButton(onClick = { vm.clearScan(); sheet = Sheet.VOICE }) {
+                            Icon(Icons.Rounded.Mic, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(6.dp))
+                            Text(stringResource(R.string.scan_use_voice))
+                        }
                     }
                 }
             }

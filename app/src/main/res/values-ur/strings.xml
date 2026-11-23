@@ -119,7 +119,9 @@
     <string name="scan_reading_list">لسٹ پڑھی جا رہی ہے</string>
     <string name="scan_wait">چند سیکنڈ لگیں گے…</string>
     <string name="scan_found_title">ملنے والی چیزیں</string>
-    <string name="scan_unreadable">یہ صفحہ پڑھا نہیں جا سکا۔ صاف تصویر لیں یا دوسری زبان چنیں۔</string>
+    <string name="scan_unreadable">یہ صفحہ پڑھا نہیں جا سکا۔ صرف چھپی ہوئی لسٹ اسکین ہوتی ہے — اگر ہاتھ سے لکھی ہے تو "بولیں" دبائیں اور آئٹم بول دیں۔</string>
+    <string name="scan_printed_hint">اسکین صرف چھپی ہوئی لسٹ پڑھتا ہے۔ ہاتھ سے لکھی ہے؟ "بولیں" استعمال کریں۔</string>
+    <string name="scan_use_voice">بول کر لسٹ بنائیں</string>
     <string name="scan_needs_internet">یہ پڑھا نہیں جا سکا۔ چھپی ہوئی اردو اور عربی بغیر انٹرنیٹ پڑھی جاتی ہے، لیکن ہاتھ کی لکھائی صرف آن لائن پڑھی جا سکتی ہے۔ صاف تصویر لیں یا آواز سے آئٹم شامل کریں۔</string>
     <string name="scan_unavailable">اس وقت اس فون پر اسکینر دستیاب نہیں۔</string>
 

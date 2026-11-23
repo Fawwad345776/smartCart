@@ -119,7 +119,9 @@
     <string name="scan_reading_list">लिस्ट पढ़ी जा रही है</string>
     <string name="scan_wait">कुछ सेकंड लगेंगे…</string>
     <string name="scan_found_title">मिला हुआ सामान</string>
-    <string name="scan_unreadable">यह पेज पढ़ा नहीं जा सका। साफ़ फ़ोटो लें या दूसरी भाषा चुनें।</string>
+    <string name="scan_unreadable">यह पेज पढ़ा नहीं जा सका। सिर्फ़ छपी हुई लिस्ट स्कैन होती है — अगर हाथ से लिखी है तो "बोलें" दबाएँ और आइटम बोल दें।</string>
+    <string name="scan_printed_hint">स्कैन सिर्फ़ छपी हुई लिस्ट पढ़ता है। हाथ से लिखी है? "बोलें" इस्तेमाल करें।</string>
+    <string name="scan_use_voice">बोलकर लिस्ट बनाएँ</string>
     <string name="scan_needs_internet">पढ़ा नहीं जा सका। छपी हुई उर्दू और अरबी बिना इंटरनेट पढ़ी जाती है, लेकिन हाथ की लिखावट सिर्फ़ ऑनलाइन पढ़ी जा सकती है। साफ़ फ़ोटो लें या आवाज़ से आइटम जोड़ें।</string>
     <string name="scan_unavailable">अभी इस फ़ोन पर स्कैनर उपलब्ध नहीं है।</string>
 

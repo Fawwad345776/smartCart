@@ -9,7 +9,6 @@ import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.aura.smartcart.service.scan.BillScan
-import com.aura.smartcart.service.scan.GeminiVision
 import com.aura.smartcart.service.scan.ScanOutcome
 import com.aura.smartcart.service.scan.TesseractOcr
 import com.aura.smartcart.service.scan.TextScanner
@@ -29,7 +28,7 @@ import java.io.File
 class UrduArabicScanTest {
 
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
-    private val scanner = TextScanner(context, GeminiVision(), TesseractOcr(context))
+    private val scanner = TextScanner(context, TesseractOcr(context))
 
     @Test
     fun readsUrduBill() = runBlocking {
