@@ -44,6 +44,23 @@ class VideoBillCollectorTest {
         assertEquals(listOf(milk, milk), c.confirmed())
     }
 
+    /** Frames as the phone really read a printed bill (OCR slips in names and one price). */
+    @Test fun real_video_frames_give_each_item_once() {
+        fun i(n: String, p: Double) = ReceiptItem(n, "", p)
+        val c = VideoBillCollector()
+        c.add(frame(i("Dalda Cooking 0il 1L", 620.0), i("Nestle Milkpak 1L", 990.0)))
+        c.add(frame(i("Dalda Cooking 0il 1L", 620.0), i("Nestle Milkpak lL", 990.0), i("Sugar lkg", 330.0)))
+        c.add(frame(i("Dalda Cooking..0i l", 620.0), i("Nestlc Milkpak LL", 990.0), i("Eggs (Dozen)", 380.0)))
+        c.add(frame(i("Dalda Cosking ôil il", 620.0), i("Nestle Milkpak ii", 990.0), i("Bugar 1kg", 330.0), i("Eggs (Dozen)", 380.0)))
+        c.add(frame(i("Nestle Milkpak 1i", 980.0), i("Sugar 1kg", 330.0), i("Eggs (Dozen)", 380.0), i("Coca Cola 1.5L", 380.0)))
+        c.add(frame(i("Sugar 1kg", 330.0), i("Coca Cola 1.5L", 380.0)))
+
+        val items = c.confirmed()
+        assertEquals(items.joinToString { "${it.name}=${it.price}" }, 5, items.size)
+        assertEquals(listOf("Dalda Cooking 0il 1L", "Nestle Milkpak 1L", "Sugar 1kg", "Eggs (Dozen)", "Coca Cola 1.5L"), items.map { it.name })
+        assertEquals(listOf(620.0, 990.0, 330.0, 380.0, 380.0), items.map { it.price })
+    }
+
     @Test fun keeps_last_total_and_falls_back_to_all_seen() {
         val c = VideoBillCollector()
         c.add(frame(rice, total = 1450.0))

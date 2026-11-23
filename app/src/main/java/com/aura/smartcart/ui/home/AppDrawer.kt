@@ -39,7 +39,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import coil.compose.AsyncImage
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
@@ -148,7 +151,16 @@ private fun DrawerHeader(user: AccountUser?) {
             if (user == null) {
                 CartLogo(Modifier.size(34.dp), cartColor = colors.primary, checkColor = colors.secondary)
             } else {
+                // The initial shows while the Google photo loads, and stays if there is no photo or no internet.
                 Text(user.initial, style = MaterialTheme.typography.titleLarge, color = colors.onPrimary)
+                if (user.photoUrl != null) {
+                    AsyncImage(
+                        model = user.photoUrl,
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.size(52.dp).clip(CircleShape)
+                    )
+                }
             }
         }
         Spacer(Modifier.width(12.dp))

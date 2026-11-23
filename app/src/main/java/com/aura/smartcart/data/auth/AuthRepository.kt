@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.UserProfileChangeRequest
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -20,7 +21,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.tasks.await
 
 /** The signed-in Google account, as shown in the side menu. */
-data class AccountUser(val name: String, val email: String) {
+data class AccountUser(val name: String, val email: String, val photoUrl: String? = null) {
     val initial: String get() = (name.ifBlank { email }).take(1).uppercase()
 }
 
@@ -62,7 +63,20 @@ class AuthRepository(private val appContext: Context) {
             if (current != null && current.isAnonymous) {
                 try {
                     // Keeps the same user id, so bills uploaded anonymously stay with this account.
-                    current.linkWithCredential(firebaseCredential).await()
+                    val linked = current.linkWithCredential(firebaseCredential).await().user
+                    // Linking doesn't copy the Google name and photo onto the account: copy them.
+                    linked?.providerData?.firstOrNull { it.providerId == GoogleAuthProvider.PROVIDER_ID }?.let { g ->
+                        try {
+                            linked.updateProfile(
+                                UserProfileChangeRequest.Builder()
+                                    .setDisplayName(g.displayName)
+                                    .setPhotoUri(g.photoUrl)
+                                    .build()
+                            ).await()
+                        } catch (e: Exception) {
+                            Log.w(TAG, "Could not copy the Google name/photo", e)
+                        }
+                    }
                 } catch (_: FirebaseAuthUserCollisionException) {
                     // This Google account already has SmartCart data: switch to it.
                     auth.signInWithCredential(firebaseCredential).await()
@@ -99,7 +113,13 @@ class AuthRepository(private val appContext: Context) {
 
     private fun FirebaseUser?.toAccount(): AccountUser? {
         if (this == null || isAnonymous) return null
-        return AccountUser(name = displayName.orEmpty(), email = email.orEmpty())
+        // An anonymous account linked to Google keeps an empty name/photo of its own; they are on the Google entry.
+        val google = providerData.firstOrNull { it.providerId == GoogleAuthProvider.PROVIDER_ID }
+        val name = displayName?.takeIf { it.isNotBlank() } ?: google?.displayName.orEmpty()
+        val mail = email?.takeIf { it.isNotBlank() } ?: google?.email.orEmpty()
+        // Google gives the photo at 96px; ask for a sharper one for the side menu.
+        val photo = (photoUrl ?: google?.photoUrl)?.toString()?.takeIf { it.isNotBlank() }?.replace("=s96-c", "=s192-c")
+        return AccountUser(name = name, email = mail, photoUrl = photo)
     }
 
     private companion object {

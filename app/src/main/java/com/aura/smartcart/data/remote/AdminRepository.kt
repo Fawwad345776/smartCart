@@ -1,5 +1,6 @@
 package com.aura.smartcart.data.remote
 
+import com.aura.smartcart.service.SessionTracker
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.AggregateSource
@@ -26,6 +27,25 @@ data class AdminUser(
     val isPro: Boolean,
     val playPro: Boolean,
     val lastSeen: Long?
+)
+
+/** One app session from `app_sessions` (written by SessionTracker). */
+data class AdminSession(
+    val id: String,
+    /** The phone's ANDROID_ID: one person/phone in the dashboard. */
+    val deviceId: String,
+    val authUid: String,
+    val isGuest: Boolean,
+    val name: String?,
+    val email: String?,
+    val country: String,
+    val deviceName: String,
+    val androidVersion: String,
+    val appVersion: String,
+    val start: Date?,
+    val end: Date?,
+    val durationSec: Long,
+    val screens: List<String>
 )
 
 /**
@@ -63,6 +83,39 @@ class AdminRepository {
                 lastSeen = d.getTimestamp("lastSeenAt")?.toDate()?.time
             )
         }
+
+    /**
+     * All sessions on the day starting at [day], newest first. Each phone has one document per day
+     * (`<phone id>_<yyyyMMdd>`) with that day's sessions in its `sessions` map.
+     */
+    suspend fun sessions(day: Date): List<AdminSession> {
+        val date = java.text.SimpleDateFormat("yyyy-MM-dd", Locale.US).format(day)
+        return firestore.collection(SessionTracker.COLLECTION)
+            .whereEqualTo("date", date)
+            .get().await().documents.flatMap { d ->
+                val deviceId = d.getString("deviceId") ?: d.id.substringBefore('_')
+                @Suppress("UNCHECKED_CAST")
+                val sessions = (d.get("sessions") as? Map<String, Map<String, Any?>>).orEmpty()
+                sessions.map { (id, s) ->
+                    AdminSession(
+                        id = id,
+                        deviceId = deviceId,
+                        authUid = d.getString("authUid").orEmpty(),
+                        isGuest = d.getBoolean("isGuest") ?: true,
+                        name = d.getString("name"),
+                        email = d.getString("email"),
+                        country = d.getString("country") ?: "Unknown",
+                        deviceName = d.getString("deviceName") ?: "Unknown device",
+                        androidVersion = d.getString("androidVersion").orEmpty(),
+                        appVersion = d.getString("appVersion").orEmpty(),
+                        start = (s["startTime"] as? Timestamp)?.toDate(),
+                        end = (s["endTime"] as? Timestamp)?.toDate(),
+                        durationSec = (s["durationSec"] as? Number)?.toLong() ?: 0L,
+                        screens = (s["screens"] as? List<String>).orEmpty()
+                    )
+                }
+            }.sortedByDescending { it.start }
+    }
 
     /** The admin's Pro switch for one user (the user's app follows it live). */
     suspend fun setPro(uid: String, isPro: Boolean) {

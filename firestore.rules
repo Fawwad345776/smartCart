@@ -38,8 +38,10 @@ service cloud.firestore {
     // cheaper-price alerts and the Smart Store Plan. Signed-in users can read;
     // each user can only write/delete their own documents.
     match /prices/{priceId} {
-      allow read: if request.auth != null;
+      // Guests are signed in anonymously only for the usage log: they don't get the price board.
+      allow read: if request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous';
       allow create, update: if request.auth != null
+        && request.auth.token.firebase.sign_in_provider != 'anonymous'
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.price is number
         && request.resource.data.name is string
@@ -47,6 +49,19 @@ service cloud.firestore {
         && request.resource.data.lat is number
         && request.resource.data.lng is number;
       allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
+    }
+    // App usage log for the admin dashboard (SessionTracker): one document per phone per day,
+    // id "<phone id>_<yyyyMMdd>". Every phone (guests sign in anonymously) writes only its own
+    // phone's document; after a reinstall the phone has a new sign-in but the same phone id.
+    // Only the admin reads them.
+    match /app_sessions/{docId} {
+      allow create: if request.auth != null
+        && request.resource.data.authUid == request.auth.uid
+        && docId.matches(request.resource.data.deviceId + '_[0-9]{8}');
+      allow update: if request.auth != null
+        && request.resource.data.authUid == request.auth.uid
+        && request.resource.data.deviceId == resource.data.deviceId;
+      allow read, delete: if isAdmin();
     }
     match /{document=**} {
       allow read, write: if false;

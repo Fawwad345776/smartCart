@@ -32,6 +32,7 @@ object ReceiptParser {
         "(?i)\\b(grand\\s*total|net\\s*total|net\\s*amount|total\\s*amount|total\\s*payable|amount\\s*payable|" +
             "bill\\s*amount|total|payable|net)\\b|कुल|कुल\\s*राशि|کل|ٹوٹل|المجموع|الإجمالي|الاجمالي|المبلغ"
     )
+    private val SUB_TOTAL = Regex("(?i)\\bsub\\s*-?\\s*total")
     private val SKIP_WORDS = Regex(
         "(?i)\\b(sub\\s*-?\\s*total|subtotal|tax|gst|vat|sst|fed|pst|service|discount|disc|savings|saved|cash|change|" +
             "balance|tender|tendered|paid|card|visa|master|round|rounding|invoice|receipt|bill\\s*no|inv|ntn|strn|tel|phone|" +
@@ -56,7 +57,8 @@ object ReceiptParser {
     )
 
     fun parse(rows: List<String>): ReceiptResult {
-        val clean = rows.map { Digits.toAscii(it).replace('\t', ' ').trim() }.filter { it.isNotEmpty() }
+        val clean = rows.map { fixOcrNumbers(Digits.toAscii(it).replace('\t', ' ')).trim() }
+            .filter { it.isNotEmpty() && !FILE_NAME.containsMatchIn(it) }
 
         var store = ""
         var date = ""
@@ -75,7 +77,8 @@ object ReceiptParser {
             val nameText = nameTokens.joinToString(" ").trim().trim(':', '-', '.', '*')
             val hasLetters = nameText.any { it.isLetter() }
 
-            // Totals and other footer/header lines
+            // Totals and other footer/header lines. "Sub Total" is not the bill total (discount/tax come after).
+            if (SUB_TOTAL.containsMatchIn(row)) { pendingName = null; continue }
             if (TOTAL_WORDS.containsMatchIn(row) && !SKIP_WORDS.containsMatchIn(row.replace(TOTAL_WORDS, " "))) {
                 numbers.values.lastOrNull()?.value?.let { if (it > total) total = it }
                 pendingName = null
@@ -87,7 +90,11 @@ object ReceiptParser {
             if (numbers.values.isEmpty()) {
                 // A name with its numbers on the next line, or the shop name at the top.
                 if (hasLetters) {
-                    if (items.isEmpty() && store.isEmpty() && index < 4 && pendingName == null) {
+                    // A name whose next line is "1 x 720.00   720.00" is an item, even at the top
+                    // (a video frame often starts in the middle of the bill).
+                    val next = clean.getOrNull(index + 1)
+                    val nextIsQtyLine = next != null && next.none { it.isLetter() && it !in "xX×" } && next.any { it.isDigit() }
+                    if (!nextIsQtyLine && items.isEmpty() && store.isEmpty() && index < 4 && pendingName == null) {
                         store = nameText
                     } else {
                         pendingName = nameText
@@ -98,6 +105,10 @@ object ReceiptParser {
 
             val (qtyFromNumbers, price) = columns(numbers.values, numbers.hadTimes)
             if (price <= 0.0) continue
+            // A lone single digit ("Delete 8", "P 6": keyboard keys, page numbers) is not a price:
+            // bills print "8.00" or at least two digits.
+            val last = numbers.values.last()
+            if (numbers.values.size == 1 && last.decimals == 0 && last.value < 10) { pendingName = null; continue }
 
             if (!hasLetters) {
                 // "2 x 160.00  320.00" under a name line
@@ -132,6 +143,23 @@ object ReceiptParser {
         if (total == 0.0) total = items.sumOf { it.price }
         return ReceiptResult(store.titleCaseIfShouting(), date, items, total)
     }
+
+    /** A file name or web address (e.g. a receipt shown on a computer screen), never a bill line. */
+    private val FILE_NAME = Regex("(?i)\\w\\.(pdf|png|jpe?g|docx?|xlsx?|html?)\\b|_\\w+\\.\\w|https?://")
+
+    /**
+     * Repairs the usual OCR slips in numbers, mostly from video frames:
+     *   "720:00" / "720;00" -> "720.00"      "9, 025.00" -> "9,025.00"     "9,000. 00" / "165 .00" -> "9,000.00" / "165.00"
+     *   "620,00" -> "620.00"                 "2x165.00" / "2 x165" -> "2 x 165.00" / "2 x 165"
+     */
+    internal fun fixOcrNumbers(row: String): String = row
+        .replace(Regex("(\\d)\\s*[:;]\\s*(\\d{2})(?!\\d)"), "$1.$2")
+        .replace(Regex("(?i)(\\d)[:;](\\d)(?=\\s*(?:l|ltr|kg|g|ml)\\b)"), "$1.$2") // "1:5L" -> "1.5L"
+        .replace(Regex("(\\d),\\s+(\\d{3})(?!\\d)"), "$1,$2")
+        .replace(Regex("(\\d)\\s*\\.\\s+(\\d{2})(?!\\d)"), "$1.$2")
+        .replace(Regex("(\\d)\\s+\\.(\\d{2})(?!\\d)"), "$1.$2")
+        .replace(Regex("(?<![\\d,])(\\d{1,3}),(\\d{2})(?![\\d,])"), "$1.$2")
+        .replace(Regex("(?i)(?<![\\w.])(\\d{1,3})\\s*([x×*])\\s*(?=\\d)"), "$1 x ")
 
     /** A number on a bill and how many digits it had after the point ("160.00" -> 2, "1.250" -> 3). */
     private class NumTok(val value: Double, val decimals: Int)

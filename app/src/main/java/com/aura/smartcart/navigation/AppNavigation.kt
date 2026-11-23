@@ -5,7 +5,10 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.navigation.NavController
+import com.aura.smartcart.service.SessionTracker
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
@@ -79,6 +82,15 @@ fun AppNavigation(
             onSignedIn = { pendingBillRoute = null; nav.navigate(route) },
             onDismiss = { pendingBillRoute = null }
         )
+    }
+
+    // Screens visited, for the admin dashboard's session log.
+    DisposableEffect(nav) {
+        val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
+            SessionTracker.logScreen(destination.route)
+        }
+        nav.addOnDestinationChangedListener(listener)
+        onDispose { nav.removeOnDestinationChangedListener(listener) }
     }
 
     // A tapped shopping reminder opens that list once the app is past splash/onboarding.

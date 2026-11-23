@@ -64,11 +64,12 @@
 
   <section id="privacy">
     <h2>Privacy Policy</h2>
-    <p class="updated">Last updated: November 21, 2026</p>
+    <p class="updated">Last updated: November 23, 2026</p>
 
     <p>SmartCart ("the app", "we") helps you make shopping lists, keep bills and track a budget.
       This policy explains what information the app uses, why, and where it goes.
-      SmartCart does not show ads, does not sell your data, and does not use analytics or tracking tools.</p>
+      SmartCart does not show ads, does not sell your data and does not use advertising trackers. It keeps a simple
+      usage log and crash reports (see the table below) only to understand how the app is used and to fix problems.</p>
 
     <h3>1. Google sign-in</h3>
     <p>You can make shopping lists and use the budget without an account. To add bills, you sign in with your
@@ -111,6 +112,19 @@
         <td>Turn speech into list items or bill details</td>
         <td>Handled by your phone's speech recognition service. The app does not record or store audio.</td>
       </tr>
+      <tr>
+        <td>Usage log: your phone's app-specific ID (Android ID), phone model, Android and app version, country (from the
+          mobile network, SIM or phone language), when the app was opened and for how long, and which screens were opened.
+          If you are signed in, also your name and email.</td>
+        <td>Understand how many people use the app and which features they use, so we can improve it</td>
+        <td>Cloud Firestore, readable only by the app's administrator. Not used for advertising.</td>
+      </tr>
+      <tr>
+        <td>Crash reports: technical details of a crash (error, app and Android version, phone model) and your phone's
+          app-specific ID</td>
+        <td>Find and fix crashes</td>
+        <td>Firebase Crashlytics (Google)</td>
+      </tr>
     </table>
     </div>
 
@@ -138,7 +152,7 @@
     <h3>5. Third-party services</h3>
     <p>SmartCart uses these Google services, which process data under their own policies:</p>
     <ul>
-      <li>Firebase Authentication, Cloud Firestore and Firebase AI Logic (Gemini)</li>
+      <li>Firebase Authentication, Cloud Firestore, Firebase Crashlytics and Firebase AI Logic (Gemini)</li>
       <li>Google ML Kit and Google Play services (scanning, location)</li>
       <li>Google Play Billing (SmartCart Pro subscription; payments are handled by Google Play, we never see your card details)</li>
       <li>Google Privacy Policy: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></li>
@@ -168,6 +182,7 @@
       <li>Deleting a bill in the app also deletes its cloud copy.</li>
       <li>Uninstalling the app or clearing its data removes everything stored on your phone.</li>
       <li>Logging out stops new bills from being added and backed up. Bills already on the phone stay there.</li>
+      <li>You can ask us to delete the usage log of your phone (contact us, section 12).</li>
       <li>To delete your account and all cloud copies of your bills, contact us (section 12) from the email of your
         Google account and we will remove them.</li>
     </ul>

@@ -48,8 +48,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.aura.smartcart.R
@@ -80,7 +81,7 @@ fun VideoBillScanner(
     val previewView = remember {
         PreviewView(context).apply {
             scaleType = PreviewView.ScaleType.FILL_CENTER
-            // TextureView: draws correctly under the Compose overlay inside a dialog window.
+            // TextureView: draws correctly under the Compose overlay (buttons and text on top of the camera).
             implementationMode = PreviewView.ImplementationMode.COMPATIBLE
         }
     }
@@ -151,11 +152,18 @@ fun VideoBillScanner(
         }
     }
 
-    Dialog(
-        onDismissRequest = onDismiss,
-        properties = DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)
-    ) {
-        Box(Modifier.fillMaxSize().background(Color.Black)) {
+    // A full-screen layer over the bill screen, not a Dialog: on Android 15+ a dialog window is drawn
+    // under the navigation bar and gets no inset values, which put the Done button under the 3-button bar.
+    // In the activity's own window, statusBarsPadding()/navigationBarsPadding() work as on every other screen.
+    BackHandler(onBack = onDismiss)
+    run {
+        Box(
+            Modifier
+                .fillMaxSize()
+                .background(Color.Black)
+                // Taps must not reach the bill screen underneath.
+                .pointerInput(Unit) { detectTapGestures { } }
+        ) {
             AndroidView(factory = { previewView }, modifier = Modifier.fillMaxSize())
 
             // Top: close, title, flash, language, how-to

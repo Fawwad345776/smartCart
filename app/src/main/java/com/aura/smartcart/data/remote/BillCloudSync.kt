@@ -16,7 +16,8 @@ class BillCloudSync {
     private val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val firestore: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
 
-    private fun uid(): String = auth.currentUser?.uid ?: error("Not signed in")
+    // Guests have an anonymous account (for the admin's usage log only); bills need a Google account.
+    private fun uid(): String = auth.currentUser?.takeIf { !it.isAnonymous }?.uid ?: error("Not signed in")
 
     /** Returns true when the bill is stored in the cloud. Never throws. */
     suspend fun upload(bill: BillEntity, items: List<BillItemEntity>): Boolean = try {

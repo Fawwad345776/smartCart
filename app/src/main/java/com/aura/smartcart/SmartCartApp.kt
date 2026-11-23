@@ -68,6 +68,14 @@ class SmartCartApp : Application() {
         // Before any Firebase call, so Gemini (AI Logic) requests carry an App Check token.
         AppCheckSetup.install()
         container = AppContainer(this)
+        // One usage record per app session, for the admin dashboard.
+        com.aura.smartcart.service.SessionTracker.init(this)
+        // Crash reports from release builds only (debug crashes are seen in Android Studio).
+        // Tagged with the phone id, so a crash can be matched with the phone in the admin dashboard.
+        com.google.firebase.crashlytics.FirebaseCrashlytics.getInstance().apply {
+            isCrashlyticsCollectionEnabled = !BuildConfig.DEBUG
+            setUserId(com.aura.smartcart.service.SessionTracker.deviceId)
+        }
         Notifier.createChannels(this)
         // Refresh Pro status (e.g. a subscription that ended or was bought on another phone).
         container.pro.connect()

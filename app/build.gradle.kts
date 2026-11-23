@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 android {
@@ -82,6 +83,8 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
+    // Crash reports (release builds only, see SmartCartApp).
+    implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.ai)
     // App Check: proves requests come from the real app (required by Firebase AI Logic).
     // Release builds use Play Integrity; debug builds use a debug token registered in the console.
@@ -109,6 +112,10 @@ dependencies {
     implementation(libs.camerax.camera2)
     implementation(libs.camerax.lifecycle)
     implementation(libs.camerax.view)
+    // ProcessCameraProvider.getInstance() returns Guava's ListenableFuture, which CameraX does not expose.
+    implementation(libs.guava)
+    // Google account photo in the side menu.
+    implementation(libs.coil.compose)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
