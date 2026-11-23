@@ -1,8 +1,22 @@
 rules_version = '2';
 
-// SmartCart: each phone signs in anonymously and can only read/write its own bills.
+// SmartCart: each user can only read/write their own profile and bills.
 service cloud.firestore {
   match /databases/{database}/documents {
+    // User profile. isPro is the admin's switch (set it in the Firebase console):
+    // the app may create the profile only with isPro = false and can never change isPro or userId.
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.uid == userId
+        && request.resource.data.isPro == false;
+      allow update: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.get('isPro', false) == resource.data.get('isPro', false)
+        && (!('userId' in resource.data) || request.resource.data.userId == resource.data.userId);
+      allow delete: if false;
+    }
     match /users/{userId}/bills/{billId} {
       allow read, delete: if request.auth != null && request.auth.uid == userId;
       allow create, update: if request.auth != null

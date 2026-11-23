@@ -15,6 +15,9 @@ import com.aura.smartcart.service.notify.Notifier
 import com.aura.smartcart.service.notify.ReminderScheduler
 import com.aura.smartcart.data.ScanQuota
 import com.aura.smartcart.data.remote.PriceShare
+import com.aura.smartcart.data.remote.UserProfileSync
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.drop
 import com.aura.smartcart.service.notify.PriceAlertWorker
 import com.aura.smartcart.service.translate.EnglishTranslator
 import com.aura.smartcart.ui.common.resolveInputLanguage
@@ -35,6 +38,7 @@ class AppContainer(context: Context) {
     private val db = AppDatabase.build(context)
     val lists = ListRepository(db)
     val prices = PriceShare()
+    val profiles = UserProfileSync()
     val translator = EnglishTranslator()
     val bills = BillRepository(
         db = db,
@@ -68,6 +72,21 @@ class SmartCartApp : Application() {
         PriceAlertWorker.createChannel(this)
         PriceAlertWorker.scheduleDaily(this)
 
+        // Signed in: save/refresh the user profile in Firestore and follow the admin's isPro switch.
+        appScope.launch {
+            container.auth.user.collectLatest { user ->
+                if (user == null) {
+                    container.pro.setAdminPro(false)
+                    return@collectLatest
+                }
+                container.profiles.upsert(user.name, user.email, container.pro.playPro.value)
+                container.profiles.adminPro().collect { container.pro.setAdminPro(it) }
+            }
+        }
+        // Subscription started or ended: show it on the profile too.
+        appScope.launch {
+            container.pro.playPro.drop(1).collect { container.profiles.setPlayPro(it) }
+        }
         appScope.launch {
             // Download the translation model for the user's language now, so saving a bill
             // (always stored in English) is quick and works offline later.

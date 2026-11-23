@@ -36,13 +36,29 @@ class ProPlan(
  * base plans (e.g. "monthly", "yearly"). Prices come from Play Console, so they are never hard-coded here.
  *
  * Pro status is cached on the phone so Pro keeps working offline; it is refreshed whenever Play is reachable.
+ * The user is Pro when they have an active Play subscription OR the admin set isPro = true for them in
+ * Firestore (users/{uid}, see UserProfileSync).
  */
 class ProBilling(context: Context) : PurchasesUpdatedListener {
 
     private val store = context.getSharedPreferences("pro_status", Context.MODE_PRIVATE)
 
-    private val _isPro = MutableStateFlow(store.getBoolean(KEY_PRO, false))
+    private val _playPro = MutableStateFlow(store.getBoolean(KEY_PRO, false))
+    /** Active Google Play subscription. */
+    val playPro: StateFlow<Boolean> = _playPro.asStateFlow()
+
+    private val _adminPro = MutableStateFlow(store.getBoolean(KEY_ADMIN_PRO, false))
+
+    private val _isPro = MutableStateFlow(_playPro.value || _adminPro.value)
+    /** Pro in the app: Play subscription or the admin's isPro switch. */
     val isPro: StateFlow<Boolean> = _isPro.asStateFlow()
+
+    /** The admin's isPro switch from Firestore (false when signed out). */
+    fun setAdminPro(value: Boolean) {
+        _adminPro.value = value
+        store.edit().putBoolean(KEY_ADMIN_PRO, value).apply()
+        _isPro.value = _playPro.value || value
+    }
 
     private val _plans = MutableStateFlow<List<ProPlan>>(emptyList())
     val plans: StateFlow<List<ProPlan>> = _plans.asStateFlow()
@@ -167,14 +183,16 @@ class ProBilling(context: Context) : PurchasesUpdatedListener {
     }
 
     private fun setPro(value: Boolean) {
-        _isPro.value = value
+        _playPro.value = value
         store.edit().putBoolean(KEY_PRO, value).apply()
+        _isPro.value = value || _adminPro.value
     }
 
     companion object {
         /** Subscription product id in Play Console. */
         const val PRODUCT_ID = "smartcart_pro"
         private const val KEY_PRO = "is_pro"
+        private const val KEY_ADMIN_PRO = "admin_pro"
         private const val TAG = "ProBilling"
     }
 }
