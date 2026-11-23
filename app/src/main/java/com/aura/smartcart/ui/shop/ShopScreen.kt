@@ -34,6 +34,7 @@ import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.DocumentScanner
 import androidx.compose.material.icons.rounded.Edit
+import androidx.compose.material.icons.rounded.Map
 import androidx.compose.material.icons.rounded.Event
 import androidx.compose.material.icons.rounded.Inventory2
 import androidx.compose.material3.AlertDialog
@@ -117,7 +118,8 @@ fun ShopScreen(
     listId: Long,
     onBack: () -> Unit,
     onEdit: () -> Unit,
-    onAddBill: () -> Unit
+    onAddBill: () -> Unit,
+    onStorePlan: () -> Unit
 ) {
     val vm = appViewModel(key = "shop_$listId") { ShopViewModel(it, listId) }
     val data by vm.list.collectAsStateWithLifecycle()
@@ -147,6 +149,9 @@ fun ShopScreen(
                 },
                 title = { Text(list?.list?.name.orEmpty()) },
                 actions = {
+                    IconButton(onClick = onStorePlan) {
+                        Icon(Icons.Rounded.Map, contentDescription = stringResource(R.string.pro_feature_plan_title))
+                    }
                     IconButton(onClick = onEdit) {
                         Icon(Icons.Rounded.Edit, contentDescription = stringResource(R.string.action_edit))
                     }

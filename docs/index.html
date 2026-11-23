@@ -117,17 +117,17 @@
     <ul>
       <li><strong>On-device reading:</strong> the app reads text on your phone without sending the image anywhere:
         Google ML Kit for English, Roman Urdu and Hindi, and the open-source Tesseract OCR for Urdu and Arabic.</li>
-      <li><strong>Gemini (online):</strong> for shopping lists, and for bills the phone could not read, the image may be sent
-        to Google's Gemini model through Firebase AI Logic. Gemini sends back only the text it read. Google handles this data
-        under its own terms, linked below. We do not keep these images on our servers.</li>
+      <li><strong>Printed text only:</strong> photo scans and the live video scanner for long bills are read entirely on your
+        phone. Images and video frames are never uploaded. Handwritten lists are not read; you can speak the items instead.</li>
     </ul>
 
     <h3>4. Permissions</h3>
     <ul>
-      <li><strong>Internet:</strong> cloud backup of bills and Gemini scanning.</li>
+      <li><strong>Internet:</strong> cloud backup of bills, shared prices and subscriptions.</li>
+      <li><strong>Camera:</strong> only for the video bill scanner, while it is open. Frames are read on the phone and not saved.</li>
       <li><strong>Microphone:</strong> voice input, only while you are using it.</li>
       <li><strong>Location:</strong> to tag a bill with the shop's area. This is optional. If you deny it, the app still works.</li>
-      <li><strong>Notifications:</strong> shopping reminders you set yourself.</li>
+      <li><strong>Notifications:</strong> shopping reminders you set yourself, and cheaper-price alerts.</li>
     </ul>
     <p>You can change or remove any permission at any time in your phone's Settings.</p>
 
@@ -136,6 +136,7 @@
     <ul>
       <li>Firebase Authentication, Cloud Firestore and Firebase AI Logic (Gemini)</li>
       <li>Google ML Kit and Google Play services (scanning, location)</li>
+      <li>Google Play Billing (SmartCart Pro subscription; payments are handled by Google Play, we never see your card details)</li>
       <li>Google Privacy Policy: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></li>
       <li>Gemini API terms: <a href="https://ai.google.dev/gemini-api/terms">ai.google.dev/gemini-api/terms</a></li>
     </ul>
@@ -146,12 +147,16 @@
       and nothing is sent unless you send the email yourself.</p>
 
     <h3>7. Sharing</h3>
+    <p><strong>Shared prices:</strong> when you save a bill with a location, each item's name, quantity and price, the shop
+      name, the shop's location and the date are added to a shared price list. Your name, email and address are not
+      included. Other signed-in users see these prices in cheaper-price alerts and the Smart Store Plan. You can turn this
+      off in Settings &gt; "Share item prices"; deleting a bill also removes the prices it shared.</p>
     <p>We do not sell, rent or share your information with anyone for advertising or marketing.
       Information is only processed by the services listed above so the app can work, or if the law requires it.</p>
 
     <h3>8. Security</h3>
     <p>Data sent to Google services is encrypted in transit (HTTPS). Firestore security rules allow each signed-in account
-      to read and write only its own bills. No method of storage or transfer is 100% secure, but we take reasonable steps
+      to read and write only its own bills, and to change or delete only the prices it shared. No method of storage or transfer is 100% secure, but we take reasonable steps
       to protect your information.</p>
 
     <h3>9. Keeping and deleting your data</h3>

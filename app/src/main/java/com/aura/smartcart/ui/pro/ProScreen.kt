@@ -150,8 +150,8 @@ fun ProScreen(onBack: () -> Unit) {
 
                 // What Pro gives
                 Feature(Icons.Rounded.DocumentScanner, stringResource(R.string.pro_feature_scan_title), stringResource(R.string.pro_feature_scan_body), comingSoon = false)
-                Feature(Icons.Rounded.NotificationsActive, stringResource(R.string.pro_feature_rate_title), stringResource(R.string.pro_feature_rate_body), comingSoon = true)
-                Feature(Icons.Rounded.Map, stringResource(R.string.pro_feature_plan_title), stringResource(R.string.pro_feature_plan_body), comingSoon = true)
+                Feature(Icons.Rounded.NotificationsActive, stringResource(R.string.pro_feature_rate_title), stringResource(R.string.pro_feature_rate_body), comingSoon = false)
+                Feature(Icons.Rounded.Map, stringResource(R.string.pro_feature_plan_title), stringResource(R.string.pro_feature_plan_body), comingSoon = false)
 
                 // Free scans used this month
                 if (!isPro) {

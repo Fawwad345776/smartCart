@@ -34,6 +34,7 @@ class AppPreferences(private val context: Context) {
         val WEEKLY_ENABLED = booleanPreferencesKey("weekly_enabled")
         val WEEKLY_DAYS = stringPreferencesKey("weekly_days")
         val WEEKLY_MINUTE = intPreferencesKey("weekly_minute")
+        val SHARE_PRICES = booleanPreferencesKey("share_prices")
     }
 
     private val data get() = context.dataStore.data
@@ -57,6 +58,13 @@ class AppPreferences(private val context: Context) {
 
     suspend fun setInputLanguage(language: InputLanguage) {
         context.dataStore.edit { it[Keys.INPUT_LANGUAGE] = language.code }
+    }
+
+    /** Share item prices from saved bills (no personal details). On by default; can be turned off in Settings. */
+    val sharePrices: Flow<Boolean> = data.map { it[Keys.SHARE_PRICES] ?: true }
+
+    suspend fun setSharePrices(on: Boolean) {
+        context.dataStore.edit { it[Keys.SHARE_PRICES] = on }
     }
 
     val country: Flow<String?> = data.map { it[Keys.COUNTRY] }

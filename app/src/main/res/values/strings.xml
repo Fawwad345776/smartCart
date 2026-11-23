@@ -267,4 +267,29 @@
     <string name="pro_unavailable">Subscriptions aren\'t available right now. Make sure you\'re online and the app is installed from Google Play.</string>
     <string name="pro_cancel_note">Cancel anytime in Google Play.</string>
     <string name="quota_reached">This month\'s free scans are used up. Get Pro for unlimited scans.</string>
+    <string name="channel_price">Cheaper price alerts</string>
+    <string name="notif_cheaper_title">%1$s is cheaper nearby</string>
+    <string name="notif_cheaper_pro">%1$s at %2$s (%3$s away, %4$s). You could save %5$s.</string>
+    <string name="notif_cheaper_free">Someone nearby bought it %1$s cheaper. Get Pro to see where.</string>
+    <string name="notif_cheaper_unknown_store">A nearby shop</string>
+    <string name="distance_km">%1$s km</string>
+    <string name="distance_m">%1$d m</string>
+    <string name="plan_intro">See which nearby shop is cheapest for each item on \"%1$s\", from prices people paid in the last 30 days.</string>
+    <string name="plan_distance">How far can you go?</string>
+    <string name="plan_build">Make my plan</string>
+    <string name="plan_need_sign_in">Sign in with Google to see prices near you.</string>
+    <string name="plan_no_location">Couldn\'t get your location. Turn on location and try again.</string>
+    <string name="plan_no_prices">No prices found nearby for these items yet. Try a bigger distance, or check again later.</string>
+    <string name="plan_missing">No price found yet for: %1$s</string>
+    <string name="plan_get_pro">Get SmartCart Pro</string>
+    <string name="settings_share_prices">Share item prices</string>
+    <string name="settings_share_prices_hint">Item prices and shop location from your saved bills are shared without your name or email, so everyone can find cheaper shops.</string>
+    <plurals name="days_ago">
+        <item quantity="one">%d day ago</item>
+        <item quantity="other">%d days ago</item>
+    </plurals>
+    <plurals name="plan_items_here">
+        <item quantity="one">%d item cheapest here</item>
+        <item quantity="other">%d items cheapest here</item>
+    </plurals>
 </resources>

@@ -14,6 +14,8 @@ import com.aura.smartcart.service.location.LocationHelper
 import com.aura.smartcart.service.notify.Notifier
 import com.aura.smartcart.service.notify.ReminderScheduler
 import com.aura.smartcart.data.ScanQuota
+import com.aura.smartcart.data.remote.PriceShare
+import com.aura.smartcart.service.notify.PriceAlertWorker
 import com.aura.smartcart.service.billing.ProBilling
 import com.aura.smartcart.service.scan.TesseractOcr
 import com.aura.smartcart.service.scan.TextScanner
@@ -30,7 +32,8 @@ class AppContainer(context: Context) {
     val prefs = AppPreferences(context)
     private val db = AppDatabase.build(context)
     val lists = ListRepository(db)
-    val bills = BillRepository(db, BillCloudSync())
+    val prices = PriceShare()
+    val bills = BillRepository(db, BillCloudSync(), prices) { prefs.sharePrices.first() }
     val budgets = BudgetRepository(db)
     val scanner = TextScanner(context, TesseractOcr(context))
     val location = LocationHelper(context)
@@ -53,6 +56,8 @@ class SmartCartApp : Application() {
         Notifier.createChannels(this)
         // Refresh Pro status (e.g. a subscription that ended or was bought on another phone).
         container.pro.connect()
+        PriceAlertWorker.createChannel(this)
+        PriceAlertWorker.scheduleDaily(this)
 
         appScope.launch {
             val prefs = container.prefs

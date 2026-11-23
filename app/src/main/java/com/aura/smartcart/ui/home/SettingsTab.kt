@@ -88,6 +88,10 @@ class SettingsViewModel(private val container: AppContainer) : ViewModel() {
     val weekly: StateFlow<WeeklyReminder?> = container.prefs.weeklyReminder
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
+    val sharePrices: StateFlow<Boolean> = container.prefs.sharePrices
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), true)
+    fun setSharePrices(on: Boolean) = viewModelScope.launch { container.prefs.setSharePrices(on) }
+
     fun setTheme(mode: ThemeMode) = viewModelScope.launch { container.prefs.setThemeMode(mode) }
     fun setInputLanguage(l: InputLanguage) = viewModelScope.launch { container.prefs.setInputLanguage(l) }
 
@@ -106,6 +110,7 @@ fun SettingsTab(contentPadding: PaddingValues) {
     val theme by vm.theme.collectAsStateWithLifecycle()
     val inputLanguage by vm.inputLanguage.collectAsStateWithLifecycle()
     val weekly by vm.weekly.collectAsStateWithLifecycle()
+    val sharePrices by vm.sharePrices.collectAsStateWithLifecycle()
     val context = LocalContext.current
     var pickTime by rememberSaveable { mutableStateOf(false) }
     val appLanguage = currentAppLanguage()
@@ -143,6 +148,13 @@ fun SettingsTab(contentPadding: PaddingValues) {
                     GreenChip(theme == ThemeMode.DARK, stringResource(R.string.theme_dark)) { vm.setTheme(ThemeMode.DARK) }
                 }
             }
+
+            SettingsCard(
+                Icons.Rounded.Storefront,
+                stringResource(R.string.settings_share_prices),
+                stringResource(R.string.settings_share_prices_hint),
+                trailing = { Switch(checked = sharePrices, onCheckedChange = { vm.setSharePrices(it) }) }
+            ) {}
 
             weekly?.let { w ->
                 SettingsCard(

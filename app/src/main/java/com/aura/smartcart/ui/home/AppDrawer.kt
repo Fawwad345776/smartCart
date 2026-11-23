@@ -82,9 +82,6 @@ fun AppDrawer(vm: AccountViewModel, onClose: () -> Unit, onOpenPro: () -> Unit) 
             }
             HorizontalDivider(Modifier.padding(vertical = 8.dp), color = colors.outline)
 
-            DrawerItem(Icons.Rounded.WorkspacePremium, stringResource(R.string.pro_title)) {
-                onClose(); onOpenPro()
-            }
             DrawerItem(Icons.Rounded.Info, stringResource(R.string.drawer_about)) { showAbout = true }
             DrawerItem(Icons.Rounded.Policy, stringResource(R.string.settings_privacy_policy)) {
                 onClose(); uriHandler.openUri(Links.PRIVACY)
@@ -94,6 +91,9 @@ fun AppDrawer(vm: AccountViewModel, onClose: () -> Unit, onOpenPro: () -> Unit) 
             }
             DrawerItem(Icons.Rounded.Feedback, stringResource(R.string.drawer_feedback)) {
                 onClose(); Feedback.open(context)
+            }
+            DrawerItem(Icons.Rounded.WorkspacePremium, stringResource(R.string.pro_title)) {
+                onClose(); onOpenPro()
             }
 
             if (user != null) {

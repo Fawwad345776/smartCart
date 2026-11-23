@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aura.smartcart.AppContainer
 import com.aura.smartcart.data.ScanKind
+import com.aura.smartcart.service.notify.PriceAlertWorker
 import com.aura.smartcart.data.repo.BillDraft
 import com.aura.smartcart.data.repo.BillDraftItem
 import com.aura.smartcart.service.scan.BillScan
@@ -334,6 +335,8 @@ class BillEditViewModel(
         viewModelScope.launch {
             val total = Money.parse(s.totalText) ?: s.itemsSum
             container.bills.save(s.draft.copy(total = total))
+            // Compare this bill's prices with others nearby (cheaper-price alert).
+            PriceAlertWorker.runSoon(container.appContext)
             _state.update { it.copy(saving = false) }
             onSaved()
         }

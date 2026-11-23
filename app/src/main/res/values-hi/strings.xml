@@ -265,4 +265,29 @@
     <string name="pro_unavailable">सब्सक्रिप्शन अभी उपलब्ध नहीं। इंटरनेट जाँचें और ऐप Google Play से इंस्टॉल होना चाहिए।</string>
     <string name="pro_cancel_note">Google Play से कभी भी कैंसल कर सकते हैं।</string>
     <string name="quota_reached">इस महीने के मुफ़्त स्कैन ख़त्म हो गए। अनलिमिटेड स्कैन के लिए Pro लें।</string>
+    <string name="channel_price">सस्ते रेट के अलर्ट</string>
+    <string name="notif_cheaper_title">%1$s पास में सस्ता मिल रहा है</string>
+    <string name="notif_cheaper_pro">%1$s, %2$s पर (%3$s दूर, %4$s)। आप %5$s बचा सकते हैं।</string>
+    <string name="notif_cheaper_free">पास में किसी ने इसे %1$s कम में लिया। कहाँ से? Pro में देखें।</string>
+    <string name="notif_cheaper_unknown_store">पास की एक दुकान</string>
+    <string name="distance_km">%1$s किमी</string>
+    <string name="distance_m">%1$d मीटर</string>
+    <string name="plan_intro">देखें कि \"%1$s\" की हर चीज़ किस पास की दुकान पर सबसे सस्ती है, पिछले 30 दिन के रेट से।</string>
+    <string name="plan_distance">कितनी दूर तक जा सकते हैं?</string>
+    <string name="plan_build">मेरा प्लान बनाएँ</string>
+    <string name="plan_need_sign_in">पास के रेट देखने के लिए Google से साइन इन करें।</string>
+    <string name="plan_no_location">आपकी लोकेशन नहीं मिली। लोकेशन चालू करके फिर कोशिश करें।</string>
+    <string name="plan_no_prices">इन चीज़ों के पास में अभी कोई रेट नहीं मिले। दूरी बढ़ाएँ या बाद में देखें।</string>
+    <string name="plan_missing">इनका रेट अभी नहीं मिला: %1$s</string>
+    <string name="plan_get_pro">SmartCart Pro लें</string>
+    <string name="settings_share_prices">चीज़ों के रेट शेयर करें</string>
+    <string name="settings_share_prices_hint">आपके बिलों से चीज़ों के रेट और दुकान की लोकेशन आपके नाम या ईमेल के बिना शेयर होती है, ताकि सबको सस्ती दुकान मिल सके।</string>
+    <plurals name="days_ago">
+        <item quantity="one">%d दिन पहले</item>
+        <item quantity="other">%d दिन पहले</item>
+    </plurals>
+    <plurals name="plan_items_here">
+        <item quantity="one">%d चीज़ यहाँ सबसे सस्ती</item>
+        <item quantity="other">%d चीज़ें यहाँ सबसे सस्ती</item>
+    </plurals>
 </resources>

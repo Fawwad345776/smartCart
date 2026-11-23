@@ -1,5 +1,6 @@
 package com.aura.smartcart
 
+import com.aura.smartcart.service.notify.EXTRA_OPEN_PRO
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -28,6 +29,9 @@ class MainActivity : AppCompatActivity() {
 
     /** A list to open because the user tapped a shopping reminder. */
     private val openListId = mutableStateOf<Long?>(null)
+
+    /** True when the user tapped a cheaper-price teaser (opens the Pro screen). */
+    private val openPro = mutableStateOf(false)
 
     /** True once the saved theme is loaded and Compose has drawn its first frame. */
     private var composeReady = false
@@ -65,7 +69,9 @@ class MainActivity : AppCompatActivity() {
                     AppNavigation(
                         container = container,
                         openListId = pendingListId,
-                        onOpenListHandled = { openListId.value = null }
+                        onOpenListHandled = { openListId.value = null },
+                        openPro = openPro.value,
+                        onOpenProHandled = { openPro.value = false }
                     )
                 }
             }
@@ -80,6 +86,7 @@ class MainActivity : AppCompatActivity() {
     private fun readOpenListExtra(intent: Intent?) {
         val id = intent?.getLongExtra(EXTRA_OPEN_LIST_ID, -1L) ?: -1L
         if (id > 0) openListId.value = id
+        if (intent?.getBooleanExtra(EXTRA_OPEN_PRO, false) == true) openPro.value = true
     }
 
     /**

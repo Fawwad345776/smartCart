@@ -285,4 +285,37 @@
     <string name="pro_unavailable">الاشتراكات غير متاحة الآن. تأكد من الاتصال بالإنترنت وأن التطبيق مثبّت من Google Play.</string>
     <string name="pro_cancel_note">يمكنك الإلغاء في أي وقت من Google Play.</string>
     <string name="quota_reached">انتهى المسح المجاني لهذا الشهر. اشترك في Pro لمسح غير محدود.</string>
+    <string name="channel_price">تنبيهات السعر الأرخص</string>
+    <string name="notif_cheaper_title">%1$s أرخص بالقرب منك</string>
+    <string name="notif_cheaper_pro">%1$s في %2$s (على بعد %3$s، %4$s). يمكنك توفير %5$s.</string>
+    <string name="notif_cheaper_free">اشتراه شخص قريب منك بـ %1$s أقل. اشترك في Pro لمعرفة المكان.</string>
+    <string name="notif_cheaper_unknown_store">متجر قريب</string>
+    <string name="distance_km">%1$s كم</string>
+    <string name="distance_m">%1$d م</string>
+    <string name="plan_intro">اعرف أي متجر قريب أرخص لكل غرض في \"%1$s\" من أسعار آخر 30 يومًا.</string>
+    <string name="plan_distance">إلى أي مسافة يمكنك الذهاب؟</string>
+    <string name="plan_build">أنشئ خطتي</string>
+    <string name="plan_need_sign_in">سجّل الدخول بحساب Google لرؤية الأسعار القريبة.</string>
+    <string name="plan_no_location">تعذّر تحديد موقعك. شغّل الموقع وحاول مرة أخرى.</string>
+    <string name="plan_no_prices">لا توجد أسعار قريبة لهذه الأغراض بعد. جرّب مسافة أكبر أو تحقّق لاحقًا.</string>
+    <string name="plan_missing">لم يُعثر على سعر بعد لـ: %1$s</string>
+    <string name="plan_get_pro">اشترك في SmartCart Pro</string>
+    <string name="settings_share_prices">مشاركة أسعار الأغراض</string>
+    <string name="settings_share_prices_hint">تُشارك أسعار الأغراض وموقع المتجر من فواتيرك دون اسمك أو بريدك، ليجد الجميع متاجر أرخص.</string>
+    <plurals name="days_ago">
+        <item quantity="zero">اليوم</item>
+        <item quantity="one">قبل يوم</item>
+        <item quantity="two">قبل يومين</item>
+        <item quantity="few">قبل %d أيام</item>
+        <item quantity="many">قبل %d يومًا</item>
+        <item quantity="other">قبل %d يوم</item>
+    </plurals>
+    <plurals name="plan_items_here">
+        <item quantity="zero">لا أغراض</item>
+        <item quantity="one">غرض واحد أرخص هنا</item>
+        <item quantity="two">غرضان أرخص هنا</item>
+        <item quantity="few">%d أغراض أرخص هنا</item>
+        <item quantity="many">%d غرضًا أرخص هنا</item>
+        <item quantity="other">%d غرض أرخص هنا</item>
+    </plurals>
 </resources>

@@ -9,6 +9,7 @@ import com.aura.smartcart.data.db.BudgetEntity
 import com.aura.smartcart.data.db.ListStatus
 import com.aura.smartcart.data.db.MonthTotal
 import com.aura.smartcart.data.remote.BillCloudSync
+import com.aura.smartcart.data.remote.PriceShare
 import com.aura.smartcart.util.Months
 import kotlinx.coroutines.flow.Flow
 import java.io.File
@@ -34,7 +35,10 @@ data class BillDraft(
 
 class BillRepository(
     private val db: AppDatabase,
-    private val cloud: BillCloudSync
+    private val cloud: BillCloudSync,
+    private val prices: PriceShare,
+    /** User setting: share item prices (no personal details) for cheaper-price alerts. */
+    private val shareEnabled: suspend () -> Boolean
 ) {
     private val bills = db.billDao()
     private val budgets = db.budgetDao()
@@ -86,8 +90,12 @@ class BillRepository(
             id
         }
         syncOne(billId)
+        if (shareEnabled()) bills.get(billId)?.let { prices.publish(it.bill, it.items) }
         return billId
     }
+
+    /** The user's own bills since [since] (for cheaper-price alerts). */
+    suspend fun recent(since: Long): List<BillWithItems> = bills.since(since)
 
     private suspend fun syncOne(billId: Long) {
         val saved = bills.get(billId) ?: return
@@ -104,6 +112,7 @@ class BillRepository(
         bills.delete(billId)
         bill.imagePath?.let { File(it).delete() }
         cloud.delete(bill.remoteId)
+        prices.removeFor(bill.remoteId)
     }
 
     private suspend fun ensureBudgetForMonth(monthKey: String) {

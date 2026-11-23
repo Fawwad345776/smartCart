@@ -77,6 +77,10 @@ interface BillDao {
     @Query("SELECT * FROM bills WHERE id = :id")
     suspend fun get(id: Long): BillWithItems?
 
+    @Transaction
+    @Query("SELECT * FROM bills WHERE purchasedAt >= :since ORDER BY purchasedAt DESC")
+    suspend fun since(since: Long): List<BillWithItems>
+
     @Query("SELECT COUNT(*) FROM bills WHERE monthKey = :monthKey")
     suspend fun countInMonth(monthKey: String): Int
 

@@ -24,6 +24,7 @@ import com.aura.smartcart.ui.editor.ListEditorScreen
 import com.aura.smartcart.ui.home.HomeScreen
 import com.aura.smartcart.ui.onboarding.OnboardingScreen
 import com.aura.smartcart.ui.pro.ProScreen
+import com.aura.smartcart.ui.plan.StorePlanScreen
 import com.aura.smartcart.ui.shop.ShopScreen
 import com.aura.smartcart.ui.splash.SplashScreen
 import kotlinx.coroutines.flow.first
@@ -37,6 +38,9 @@ object Routes {
     const val SHOP = "shop/{listId}"
     const val BILL = "bill?billId={billId}&listId={listId}&image={image}"
     const val PRO = "pro"
+    const val STORE_PLAN = "plan/{listId}"
+
+    fun storePlan(listId: Long) = "plan/$listId"
 
     fun editor(listId: Long? = null, copyFrom: Long? = null) =
         "editor?listId=${listId ?: -1}&copyFrom=${copyFrom ?: -1}"
@@ -50,7 +54,13 @@ object Routes {
 private fun Long.orNull(): Long? = takeIf { it > 0 }
 
 @Composable
-fun AppNavigation(container: AppContainer, openListId: Long?, onOpenListHandled: () -> Unit) {
+fun AppNavigation(
+    container: AppContainer,
+    openListId: Long?,
+    onOpenListHandled: () -> Unit,
+    openPro: Boolean = false,
+    onOpenProHandled: () -> Unit = {}
+) {
     val nav = rememberNavController()
     val scope = rememberCoroutineScope()
     // Saved so it survives the activity being recreated (e.g. after changing the app language).
@@ -74,6 +84,14 @@ fun AppNavigation(container: AppContainer, openListId: Long?, onOpenListHandled:
         if (ready && openListId != null) {
             nav.navigate(Routes.shop(openListId)) { launchSingleTop = true }
             onOpenListHandled()
+        }
+    }
+
+    // A tapped cheaper-price teaser (free users) opens the Pro screen.
+    LaunchedEffect(openPro, ready) {
+        if (ready && openPro) {
+            nav.navigate(Routes.PRO) { launchSingleTop = true }
+            onOpenProHandled()
         }
     }
 
@@ -144,7 +162,8 @@ fun AppNavigation(container: AppContainer, openListId: Long?, onOpenListHandled:
                 listId = listId,
                 onBack = { nav.popBackStack() },
                 onEdit = { nav.navigate(Routes.editor(listId = listId)) },
-                onAddBill = { openNewBill(Routes.bill(listId = listId)) }
+                onAddBill = { openNewBill(Routes.bill(listId = listId)) },
+                onStorePlan = { nav.navigate(Routes.storePlan(listId)) }
             )
         }
         composable(
@@ -168,6 +187,17 @@ fun AppNavigation(container: AppContainer, openListId: Long?, onOpenListHandled:
                     // After saving a bill for a list, go back home (the list is finished).
                     if (listId != null) nav.popBackStack(Routes.HOME, inclusive = false) else nav.popBackStack()
                 }
+            )
+        }
+        composable(
+            Routes.STORE_PLAN,
+            arguments = listOf(navArgument("listId") { type = NavType.LongType })
+        ) { entry ->
+            val listId = entry.arguments?.getLong("listId") ?: return@composable
+            StorePlanScreen(
+                listId = listId,
+                onBack = { nav.popBackStack() },
+                onOpenPro = { nav.navigate(Routes.PRO) { launchSingleTop = true } }
             )
         }
         composable(Routes.PRO) {
