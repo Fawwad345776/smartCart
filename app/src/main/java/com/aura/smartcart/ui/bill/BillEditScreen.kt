@@ -227,7 +227,7 @@ fun BillEditScreen(
                 reading = state.reading,
                 onTotal = vm::setTotal,
                 onUseSum = vm::useItemsSum,
-                onSave = { vm.save(onSaved) }
+                onSave = { vm.save(onSaved, onOffline = { context.toast(R.string.no_internet_save) }) }
             )
         }
     ) { padding ->

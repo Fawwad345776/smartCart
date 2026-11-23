@@ -291,4 +291,5 @@
         <item quantity="one">%d चीज़ यहाँ सबसे सस्ती</item>
         <item quantity="other">%d चीज़ें यहाँ सबसे सस्ती</item>
     </plurals>
+    <string name="no_internet_save">इंटरनेट नहीं है। पहले इंटरनेट कनेक्ट करें, फिर दोबारा कोशिश करें।</string>
 </resources>

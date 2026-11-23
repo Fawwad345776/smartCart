@@ -319,4 +319,5 @@
         <item quantity="many">%d غرضًا أرخص هنا</item>
         <item quantity="other">%d غرض أرخص هنا</item>
     </plurals>
+    <string name="no_internet_save">لا يوجد اتصال بالإنترنت. اتصل أولًا ثم حاول مرة أخرى.</string>
 </resources>

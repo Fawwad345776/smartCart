@@ -18,6 +18,7 @@ import com.aura.smartcart.util.BillVoiceItem
 import com.aura.smartcart.util.Country
 import com.aura.smartcart.util.InputLanguage
 import com.aura.smartcart.util.Money
+import com.aura.smartcart.util.Network
 import com.aura.smartcart.util.ReceiptParser
 import com.aura.smartcart.util.VideoBillCollector
 import kotlinx.coroutines.Dispatchers
@@ -326,9 +327,17 @@ class BillEditViewModel(
     fun setTotal(v: String) = _state.update { it.copy(totalText = v, totalManual = true) }
     fun useItemsSum() = _state.update { it.copy(totalText = plain(it.itemsSum), totalManual = false) }
 
-    fun save(onSaved: () -> Unit) {
+    /**
+     * Saves only with internet: the bill is translated to English and backed up to Firebase.
+     * Offline, nothing is saved and [onOffline] is called.
+     */
+    fun save(onSaved: () -> Unit, onOffline: () -> Unit) {
         val s = _state.value
         if (s.saving) return
+        if (!Network.isOnline(container.appContext)) {
+            onOffline()
+            return
+        }
         _state.update { it.copy(saving = true) }
         viewModelScope.launch {
             val total = Money.parse(s.totalText) ?: s.itemsSum

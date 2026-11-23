@@ -293,4 +293,5 @@
         <item quantity="one">%d item cheapest here</item>
         <item quantity="other">%d items cheapest here</item>
     </plurals>
+    <string name="no_internet_save">No internet. Please connect first, then try again.</string>
 </resources>
