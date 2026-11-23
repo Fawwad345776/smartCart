@@ -16,6 +16,7 @@ import com.aura.smartcart.service.notify.ReminderScheduler
 import com.aura.smartcart.data.ScanQuota
 import com.aura.smartcart.data.remote.PriceShare
 import com.aura.smartcart.data.remote.UserProfileSync
+import com.aura.smartcart.data.remote.AdminRepository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.drop
 import com.aura.smartcart.service.notify.PriceAlertWorker
@@ -39,6 +40,7 @@ class AppContainer(context: Context) {
     val lists = ListRepository(db)
     val prices = PriceShare()
     val profiles = UserProfileSync()
+    val admin = AdminRepository()
     val translator = EnglishTranslator()
     val bills = BillRepository(
         db = db,

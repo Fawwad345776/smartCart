@@ -24,6 +24,7 @@ import com.aura.smartcart.ui.editor.ListEditorScreen
 import com.aura.smartcart.ui.home.HomeScreen
 import com.aura.smartcart.ui.onboarding.OnboardingScreen
 import com.aura.smartcart.ui.pro.ProScreen
+import com.aura.smartcart.ui.admin.AdminScreen
 import com.aura.smartcart.ui.plan.StorePlanScreen
 import com.aura.smartcart.ui.shop.ShopScreen
 import com.aura.smartcart.ui.splash.SplashScreen
@@ -38,6 +39,7 @@ object Routes {
     const val SHOP = "shop/{listId}"
     const val BILL = "bill?billId={billId}&listId={listId}&image={image}"
     const val PRO = "pro"
+    const val ADMIN = "admin"
     const val STORE_PLAN = "plan/{listId}"
 
     fun storePlan(listId: Long) = "plan/$listId"
@@ -133,7 +135,8 @@ fun AppNavigation(
                 onReuseList = { nav.navigate(Routes.editor(copyFrom = it)) },
                 onOpenBill = { nav.navigate(Routes.bill(billId = it)) },
                 onNewBill = { path -> openNewBill(Routes.bill(imagePath = path)) },
-                onOpenPro = { nav.navigate(Routes.PRO) { launchSingleTop = true } }
+                onOpenPro = { nav.navigate(Routes.PRO) { launchSingleTop = true } },
+                onOpenAdmin = { nav.navigate(Routes.ADMIN) { launchSingleTop = true } }
             )
         }
         composable(
@@ -199,6 +202,9 @@ fun AppNavigation(
                 onBack = { nav.popBackStack() },
                 onOpenPro = { nav.navigate(Routes.PRO) { launchSingleTop = true } }
             )
+        }
+        composable(Routes.ADMIN) {
+            AdminScreen(onBack = { nav.popBackStack() })
         }
         composable(Routes.PRO) {
             ProScreen(onBack = { nav.popBackStack() })

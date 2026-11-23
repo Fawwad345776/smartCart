@@ -77,7 +77,8 @@ fun HomeScreen(
     onReuseList: (Long) -> Unit,
     onOpenBill: (Long) -> Unit,
     onNewBill: (imagePath: String?) -> Unit,
-    onOpenPro: () -> Unit
+    onOpenPro: () -> Unit,
+    onOpenAdmin: () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
     val context = LocalContext.current
@@ -102,7 +103,7 @@ fun HomeScreen(
 
     ModalNavigationDrawer(
         drawerState = drawerState,
-        drawerContent = { AppDrawer(accountVm, onClose = { scope.launch { drawerState.close() } }, onOpenPro = onOpenPro) }
+        drawerContent = { AppDrawer(accountVm, onClose = { scope.launch { drawerState.close() } }, onOpenPro = onOpenPro, onOpenAdmin = onOpenAdmin) }
     ) {
     Row(Modifier.fillMaxSize()) {
         if (wide) {

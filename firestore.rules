@@ -3,10 +3,19 @@ rules_version = '2';
 // SmartCart: each user can only read/write their own profile and bills.
 service cloud.firestore {
   match /databases/{database}/documents {
+    // The admin panel account (Google sign-in, so the email is verified). Must match AdminRepository.ADMIN_EMAIL.
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'fawwadshamim.fs@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
     // User profile. isPro is the admin's switch (set it in the Firebase console):
     // the app may create the profile only with isPro = false and can never change isPro or userId.
     match /users/{userId} {
-      allow read: if request.auth != null && request.auth.uid == userId;
+      allow read: if (request.auth != null && request.auth.uid == userId) || isAdmin();
+      // Admin panel: may only flip a user's Pro switch.
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isPro', 'proUpdatedAt', 'proUpdatedBy']);
       allow create: if request.auth != null
         && request.auth.uid == userId
         && request.resource.data.uid == userId

@@ -21,6 +21,8 @@ import androidx.compose.material.icons.rounded.Feedback
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Policy
 import androidx.compose.material.icons.rounded.WorkspacePremium
+import androidx.compose.material.icons.rounded.AdminPanelSettings
+import com.aura.smartcart.data.remote.AdminRepository
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -59,7 +61,7 @@ import com.aura.smartcart.util.Links
  * [onClose] closes the drawer after an item is tapped.
  */
 @Composable
-fun AppDrawer(vm: AccountViewModel, onClose: () -> Unit, onOpenPro: () -> Unit) {
+fun AppDrawer(vm: AccountViewModel, onClose: () -> Unit, onOpenPro: () -> Unit, onOpenAdmin: () -> Unit) {
     val user by vm.user.collectAsStateWithLifecycle()
     val uriHandler = LocalUriHandler.current
     val context = LocalContext.current
@@ -94,6 +96,12 @@ fun AppDrawer(vm: AccountViewModel, onClose: () -> Unit, onOpenPro: () -> Unit) 
             }
             DrawerItem(Icons.Rounded.WorkspacePremium, stringResource(R.string.pro_title)) {
                 onClose(); onOpenPro()
+            }
+            // Only the admin account sees this.
+            if (AdminRepository.isAdminEmail(user?.email)) {
+                DrawerItem(Icons.Rounded.AdminPanelSettings, "Admin panel") {
+                    onClose(); onOpenAdmin()
+                }
             }
 
             if (user != null) {
