@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.FlashOff
@@ -33,7 +32,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -55,9 +53,6 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.aura.smartcart.R
-import com.aura.smartcart.ui.common.LanguageChips
-import com.aura.smartcart.util.InputLanguage
-import com.aura.smartcart.util.Script
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.Executors
@@ -67,14 +62,12 @@ import java.util.concurrent.atomic.AtomicLong
 /**
  * Live camera scanner for long bills: the user moves the camera slowly down the receipt and the
  * printed lines are read from the video frames, fully on the phone (free, offline).
- * ML Kit reads a frame about every half second; Tesseract (Urdu/Arabic) is slower, so less often.
+ * Bills are read in English only: ML Kit reads a frame about every half second.
  * [readFrame] reads one frame and adds its lines to the bill being collected.
  */
 @Composable
 fun VideoBillScanner(
-    language: InputLanguage,
     foundCount: Int,
-    onLanguageChange: (InputLanguage) -> Unit,
     readFrame: suspend (Bitmap) -> Unit,
     onDone: () -> Unit,
     onDismiss: () -> Unit
@@ -83,7 +76,6 @@ fun VideoBillScanner(
     val lifecycleOwner = LocalLifecycleOwner.current
     val scope = rememberCoroutineScope()
     val currentRead by rememberUpdatedState(readFrame)
-    val interval by rememberUpdatedState(if (language.script == Script.ARABIC) SLOW_INTERVAL_MS else FAST_INTERVAL_MS)
 
     val previewView = remember {
         PreviewView(context).apply {
@@ -119,7 +111,7 @@ fun VideoBillScanner(
                     .build()
                 analysis.setAnalyzer(executor) { proxy ->
                     val now = SystemClock.elapsedRealtime()
-                    if (busy.get() || now - lastRun.get() < interval) {
+                    if (busy.get() || now - lastRun.get() < INTERVAL_MS) {
                         proxy.close()
                         return@setAnalyzer
                     }
@@ -198,14 +190,6 @@ fun VideoBillScanner(
                         }
                     }
                 }
-                Surface(
-                    shape = RoundedCornerShape(14.dp),
-                    color = MaterialTheme.colorScheme.surface,
-                    modifier = Modifier.padding(horizontal = 8.dp)
-                ) {
-                    LanguageChips(selected = language, onSelect = onLanguageChange, modifier = Modifier.padding(6.dp))
-                }
-                Spacer(Modifier.height(8.dp))
                 Text(
                     stringResource(R.string.video_hint),
                     style = MaterialTheme.typography.bodySmall,
@@ -244,6 +228,4 @@ private fun Bitmap.rotated(degrees: Int): Bitmap =
 
 private const val TAG = "VideoBillScanner"
 /** ML Kit is fast: read about two frames a second. */
-private const val FAST_INTERVAL_MS = 500L
-/** Tesseract (Urdu/Arabic) takes 1-3 s per frame. */
-private const val SLOW_INTERVAL_MS = 1200L
+private const val INTERVAL_MS = 500L

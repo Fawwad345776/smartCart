@@ -38,7 +38,9 @@ class BillRepository(
     private val cloud: BillCloudSync,
     private val prices: PriceShare,
     /** User setting: share item prices (no personal details) for cheaper-price alerts. */
-    private val shareEnabled: suspend () -> Boolean
+    private val shareEnabled: suspend () -> Boolean,
+    /** Any language -> English. Bills are always saved (on the phone and in Firebase) in English. */
+    private val toEnglish: suspend (String) -> String
 ) {
     private val bills = db.billDao()
     private val budgets = db.budgetDao()
@@ -50,7 +52,8 @@ class BillRepository(
     suspend fun countBillsInMonth(monthKey: String): Int = bills.countInMonth(monthKey)
 
     /** Saves locally first (works offline), then uploads to Firestore. Returns the bill id. */
-    suspend fun save(draft: BillDraft): Long {
+    suspend fun save(original: BillDraft): Long {
+        val draft = inEnglish(original)
         val entity = BillEntity(
             id = draft.id ?: 0,
             remoteId = draft.remoteId ?: UUID.randomUUID().toString(),
@@ -92,6 +95,21 @@ class BillRepository(
         syncOne(billId)
         if (shareEnabled()) bills.get(billId)?.let { prices.publish(it.bill, it.items) }
         return billId
+    }
+
+    /** Store, address, list name and item names/quantities translated to English (same text translated once). */
+    private suspend fun inEnglish(d: BillDraft): BillDraft {
+        val cache = HashMap<String, String>()
+        suspend fun en(text: String): String {
+            if (text.isBlank()) return text
+            return cache.getOrPut(text) { toEnglish(text) }
+        }
+        return d.copy(
+            storeName = en(d.storeName),
+            address = en(d.address),
+            listName = en(d.listName),
+            items = d.items.map { it.copy(name = en(it.name), quantity = en(it.quantity)) }
+        )
     }
 
     /** The user's own bills since [since] (for cheaper-price alerts). */

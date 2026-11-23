@@ -238,7 +238,8 @@
     <string name="notif_weekly_body">Make your shopping list before you go.</string>
     <string name="bill_method_photo">Photo</string>
     <string name="bill_method_video">Video</string>
-    <string name="bill_scan_choose_hint">Short bill? Use Photo. Long bill? Use Video and move the camera slowly down.</string>
+    <string name="bill_scan_choose_hint">Short bill? Use Photo. Long bill? Use Video and move the camera slowly down. (English bills only)</string>
+    <string name="bill_scan_english_only">Bill scan reads English bills only. For other languages, type or speak, and it is saved in English.</string>
     <string name="video_title">Video scan</string>
     <string name="video_hint">Keep the bill flat in good light and move the camera slowly from top to bottom.</string>
     <string name="video_found">Items found: %1$d</string>

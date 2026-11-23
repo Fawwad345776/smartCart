@@ -116,7 +116,7 @@ class BillEditViewModel(
                     )
                 )
             }
-            if (imagePath != null) read(inputLanguage.value)
+            if (imagePath != null) read()
         }
     }
 
@@ -198,10 +198,11 @@ class BillEditViewModel(
     fun scanImage(path: String) {
         viewModelScope.launch { container.quota.recordUse(ScanKind.BILL_PHOTO) }
         _state.update { it.copy(draft = it.draft.copy(imagePath = path)) }
-        read(inputLanguage.value)
+        read()
     }
 
-    private fun read(language: InputLanguage) {
+    /** Bills are scanned in English only (photo and video). Other languages: type or speak, then saved in English. */
+    private fun read(language: InputLanguage = InputLanguage.ENGLISH) {
         val path = _state.value.draft.imagePath ?: return
         _state.update { it.copy(reading = true, scanProblem = null) }
         viewModelScope.launch {
@@ -264,7 +265,7 @@ class BillEditViewModel(
 
     /** Reads one camera frame (off the main thread) and adds its printed lines to the video bill. */
     suspend fun readVideoFrame(bitmap: Bitmap) {
-        val rows = container.scanner.readBillRows(bitmap, inputLanguage.value)
+        val rows = container.scanner.readBillRows(bitmap, InputLanguage.ENGLISH)
         if (rows.isEmpty()) return
         val frame = ReceiptParser.parse(rows)
         withContext(Dispatchers.Main.immediate) {
@@ -291,13 +292,10 @@ class BillEditViewModel(
         return true
     }
 
-    fun rescanIn(language: InputLanguage) {
-        viewModelScope.launch { container.prefs.setInputLanguage(language) }
-        read(language)
-    }
 
     fun setInputLanguage(language: InputLanguage) {
         viewModelScope.launch { container.prefs.setInputLanguage(language) }
+        viewModelScope.launch { container.translator.prefetch(language) }
     }
 
     // ---------- other fields ----------

@@ -16,6 +16,8 @@ import com.aura.smartcart.service.notify.ReminderScheduler
 import com.aura.smartcart.data.ScanQuota
 import com.aura.smartcart.data.remote.PriceShare
 import com.aura.smartcart.service.notify.PriceAlertWorker
+import com.aura.smartcart.service.translate.EnglishTranslator
+import com.aura.smartcart.ui.common.resolveInputLanguage
 import com.aura.smartcart.service.billing.ProBilling
 import com.aura.smartcart.service.scan.TesseractOcr
 import com.aura.smartcart.service.scan.TextScanner
@@ -33,7 +35,14 @@ class AppContainer(context: Context) {
     private val db = AppDatabase.build(context)
     val lists = ListRepository(db)
     val prices = PriceShare()
-    val bills = BillRepository(db, BillCloudSync(), prices) { prefs.sharePrices.first() }
+    val translator = EnglishTranslator()
+    val bills = BillRepository(
+        db = db,
+        cloud = BillCloudSync(),
+        prices = prices,
+        shareEnabled = { prefs.sharePrices.first() },
+        toEnglish = { text -> translator.toEnglish(text, resolveInputLanguage(prefs.inputLanguage.first())) }
+    )
     val budgets = BudgetRepository(db)
     val scanner = TextScanner(context, TesseractOcr(context))
     val location = LocationHelper(context)
@@ -59,6 +68,11 @@ class SmartCartApp : Application() {
         PriceAlertWorker.createChannel(this)
         PriceAlertWorker.scheduleDaily(this)
 
+        appScope.launch {
+            // Download the translation model for the user's language now, so saving a bill
+            // (always stored in English) is quick and works offline later.
+            container.translator.prefetch(resolveInputLanguage(container.prefs.inputLanguage.first()))
+        }
         appScope.launch {
             val prefs = container.prefs
             // First launch: remember the country and pre-fill the weekly market reminder for it.

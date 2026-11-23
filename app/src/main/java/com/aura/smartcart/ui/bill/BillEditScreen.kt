@@ -94,7 +94,6 @@ import com.aura.smartcart.R
 import com.aura.smartcart.data.repo.BillDraftItem
 import com.aura.smartcart.service.scan.ImageLoader
 import com.aura.smartcart.ui.common.DateTimePickerDialog
-import com.aura.smartcart.ui.common.LanguageChips
 import com.aura.smartcart.ui.common.SectionLabel
 import com.aura.smartcart.ui.common.VoiceCaptureSheet
 import com.aura.smartcart.ui.common.appViewModel
@@ -267,8 +266,7 @@ fun BillEditScreen(
                             image = image,
                             reading = state.reading,
                             problem = state.scanProblem,
-                            onImageClick = { showImage = true },
-                            languageContent = { LanguageChips(selected = language, onSelect = vm::rescanIn) }
+                            onImageClick = { showImage = true }
                         )
                     }
                 }
@@ -364,9 +362,7 @@ fun BillEditScreen(
     if (showVideo) {
         val found by vm.videoFound.collectAsStateWithLifecycle()
         VideoBillScanner(
-            language = language,
             foundCount = found,
-            onLanguageChange = vm::setInputLanguage,
             readFrame = { vm.readVideoFrame(it) },
             onDone = {
                 showVideo = false
@@ -445,8 +441,7 @@ private fun ScanStatusCard(
     image: ImageBitmap?,
     reading: Boolean,
     problem: ScanProblem?,
-    onImageClick: () -> Unit,
-    languageContent: @Composable () -> Unit
+    onImageClick: () -> Unit
 ) {
     val colors = MaterialTheme.colorScheme
     Surface(shape = RoundedCornerShape(18.dp), color = colors.surfaceVariant, modifier = Modifier.fillMaxWidth()) {
@@ -464,9 +459,7 @@ private fun ScanStatusCard(
                 Spacer(Modifier.width(12.dp))
             }
             Column(Modifier.weight(1f)) {
-                Text(stringResource(R.string.scan_language), style = MaterialTheme.typography.labelMedium, color = colors.onSurfaceVariant)
-                Spacer(Modifier.height(6.dp))
-                languageContent()
+                Text(stringResource(R.string.bill_scan_english_only), style = MaterialTheme.typography.labelMedium, color = colors.onSurfaceVariant)
                 Spacer(Modifier.height(8.dp))
                 when {
                     reading -> Row(verticalAlignment = Alignment.CenterVertically) {
