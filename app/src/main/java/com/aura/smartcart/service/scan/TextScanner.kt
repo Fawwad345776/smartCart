@@ -53,11 +53,7 @@ class TextScanner(
             ?: return ScanOutcome.Unreadable
 
         run {
-            val rows = if (language.script == Script.ARABIC) {
-                tesseractRows(bitmap, language.tesseractCode())
-            } else {
-                onDeviceRows(bitmap, language.script)
-            }
+            val rows = readBillRows(bitmap, language)
             val receipt = ReceiptParser.parse(rows)
             if (receipt.items.isNotEmpty()) {
                 return ScanOutcome.Success(
@@ -75,6 +71,17 @@ class TextScanner(
 
         return ScanOutcome.Unreadable
     }
+
+    /**
+     * Printed bill rows from one image, each row the text of one printed line. Used for photos and
+     * for each frame of the video scanner. Urdu/Arabic go through Tesseract, the rest through ML Kit.
+     */
+    suspend fun readBillRows(bitmap: Bitmap, language: InputLanguage): List<String> =
+        if (language.script == Script.ARABIC) {
+            tesseractRows(bitmap, language.tesseractCode())
+        } else {
+            onDeviceRows(bitmap, language.script)
+        }
 
     /**
      * Urdu/Arabic rows, read with two free on-device engines together:

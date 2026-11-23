@@ -1,5 +1,6 @@
 package com.aura.smartcart.ui.bill
 
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,6 +8,7 @@ import com.aura.smartcart.AppContainer
 import com.aura.smartcart.data.repo.BillDraft
 import com.aura.smartcart.data.repo.BillDraftItem
 import com.aura.smartcart.service.scan.BillScan
+import com.aura.smartcart.service.scan.BillScanItem
 import com.aura.smartcart.service.scan.ScanOutcome
 import com.aura.smartcart.ui.common.resolveInputLanguage
 import com.aura.smartcart.ui.editor.ScanProblem
@@ -14,6 +16,9 @@ import com.aura.smartcart.util.BillVoiceItem
 import com.aura.smartcart.util.Country
 import com.aura.smartcart.util.InputLanguage
 import com.aura.smartcart.util.Money
+import com.aura.smartcart.util.ReceiptParser
+import com.aura.smartcart.util.VideoBillCollector
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -22,6 +27,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.time.LocalDate
 import java.time.LocalTime
@@ -230,6 +236,47 @@ class BillEditViewModel(
                 totalManual = printedTotal != null && kotlin.math.abs(printedTotal - sum) > 0.009
             )
         }
+    }
+
+    // ---------- video scan (long bills) ----------
+
+    private val video = VideoBillCollector()
+    private val _videoFound = MutableStateFlow(0)
+    /** Items confirmed so far by the video scanner. */
+    val videoFound: StateFlow<Int> = _videoFound.asStateFlow()
+
+    fun startVideo() {
+        video.clear()
+        _videoFound.value = 0
+    }
+
+    /** Reads one camera frame (off the main thread) and adds its printed lines to the video bill. */
+    suspend fun readVideoFrame(bitmap: Bitmap) {
+        val rows = container.scanner.readBillRows(bitmap, inputLanguage.value)
+        if (rows.isEmpty()) return
+        val frame = ReceiptParser.parse(rows)
+        withContext(Dispatchers.Main.immediate) {
+            video.add(frame)
+            _videoFound.value = video.confirmed().size
+        }
+    }
+
+    /** Done in the video scanner: puts the collected lines into the bill. False if nothing was read. */
+    fun finishVideo(): Boolean {
+        val r = video.result()
+        startVideo()
+        if (r.items.isEmpty()) return false
+        applyScan(
+            BillScan(
+                store = r.store,
+                address = "",
+                date = r.date,
+                currency = "",
+                items = r.items.map { BillScanItem(it.name, it.quantity, it.price) },
+                total = r.total
+            )
+        )
+        return true
     }
 
     fun rescanIn(language: InputLanguage) {

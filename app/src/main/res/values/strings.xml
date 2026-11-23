@@ -236,4 +236,13 @@
     </plurals>
     <string name="notif_weekly_title">It\'s market day</string>
     <string name="notif_weekly_body">Make your shopping list before you go.</string>
+    <string name="bill_method_photo">Photo</string>
+    <string name="bill_method_video">Video</string>
+    <string name="bill_scan_choose_hint">Short bill? Use Photo. Long bill? Use Video and move the camera slowly down.</string>
+    <string name="video_title">Video scan</string>
+    <string name="video_hint">Keep the bill flat in good light and move the camera slowly from top to bottom.</string>
+    <string name="video_found">Items found: %1$d</string>
+    <string name="video_done">Done</string>
+    <string name="video_flash">Flash</string>
+    <string name="camera_permission_needed">Camera permission is needed for video scan.</string>
 </resources>

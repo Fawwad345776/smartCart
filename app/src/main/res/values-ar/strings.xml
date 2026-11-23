@@ -254,4 +254,13 @@
     </plurals>
     <string name="notif_weekly_title">اليوم يوم السوق</string>
     <string name="notif_weekly_body">جهّز قائمة التسوّق قبل أن تذهب.</string>
+    <string name="bill_method_photo">صورة</string>
+    <string name="bill_method_video">فيديو</string>
+    <string name="bill_scan_choose_hint">فاتورة قصيرة؟ استخدم الصورة. فاتورة طويلة؟ استخدم الفيديو وحرّك الكاميرا ببطء إلى الأسفل.</string>
+    <string name="video_title">مسح بالفيديو</string>
+    <string name="video_hint">ضع الفاتورة مستوية في إضاءة جيدة وحرّك الكاميرا ببطء من الأعلى إلى الأسفل.</string>
+    <string name="video_found">العناصر: %1$d</string>
+    <string name="video_done">تم</string>
+    <string name="video_flash">الفلاش</string>
+    <string name="camera_permission_needed">يلزم إذن الكاميرا للمسح بالفيديو.</string>
 </resources>

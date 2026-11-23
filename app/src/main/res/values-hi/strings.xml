@@ -234,4 +234,13 @@
     </plurals>
     <string name="notif_weekly_title">आज बाज़ार का दिन है</string>
     <string name="notif_weekly_body">जाने से पहले अपनी ख़रीदारी लिस्ट बना लें।</string>
+    <string name="bill_method_photo">फ़ोटो</string>
+    <string name="bill_method_video">वीडियो</string>
+    <string name="bill_scan_choose_hint">छोटा बिल? फ़ोटो लें। लंबा बिल? वीडियो चलाएँ और कैमरा धीरे-धीरे नीचे ले जाएँ।</string>
+    <string name="video_title">वीडियो स्कैन</string>
+    <string name="video_hint">बिल सीधा और अच्छी रोशनी में रखें, और कैमरा ऊपर से नीचे धीरे-धीरे ले जाएँ।</string>
+    <string name="video_found">आइटम मिले: %1$d</string>
+    <string name="video_done">हो गया</string>
+    <string name="video_flash">फ़्लैश</string>
+    <string name="camera_permission_needed">वीडियो स्कैन के लिए कैमरे की अनुमति ज़रूरी है।</string>
 </resources>

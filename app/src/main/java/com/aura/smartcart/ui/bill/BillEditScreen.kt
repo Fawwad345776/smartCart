@@ -1,6 +1,7 @@
 package com.aura.smartcart.ui.bill
 
 import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -45,6 +46,7 @@ import androidx.compose.material.icons.rounded.Mic
 import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material.icons.rounded.Place
 import androidx.compose.material.icons.rounded.Storefront
+import androidx.compose.material.icons.rounded.Videocam
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -98,6 +100,8 @@ import com.aura.smartcart.ui.common.VoiceCaptureSheet
 import com.aura.smartcart.ui.common.appViewModel
 import com.aura.smartcart.ui.common.rememberDocumentScanner
 import com.aura.smartcart.ui.common.scanErrorText
+import com.aura.smartcart.ui.common.toast
+import androidx.core.content.ContextCompat
 import com.aura.smartcart.ui.components.SystemBarIcons
 import com.aura.smartcart.ui.editor.ScanProblem
 import com.aura.smartcart.ui.theme.Brand
@@ -130,6 +134,7 @@ fun BillEditScreen(
     var showImage by rememberSaveable { mutableStateOf(false) }
     var confirmDelete by rememberSaveable { mutableStateOf(false) }
     var showVoice by rememberSaveable { mutableStateOf(false) }
+    var showVideo by rememberSaveable { mutableStateOf(false) }
     val listState = rememberLazyListState()
 
     // "Write" adds a row at the bottom: bring it on screen so its name box can take the keyboard.
@@ -153,6 +158,21 @@ fun BillEditScreen(
         scope.launch {
             val path = withContext(Dispatchers.IO) { ImageLoader.copyToBillsFolder(context, uri) }
             path?.let(vm::scanImage)
+        }
+    }
+
+    val cameraPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) {
+            vm.startVideo(); showVideo = true
+        } else {
+            context.toast(R.string.camera_permission_needed)
+        }
+    }
+    val startVideo: () -> Unit = {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            vm.startVideo(); showVideo = true
+        } else {
+            cameraPermission.launch(Manifest.permission.CAMERA)
         }
     }
 
@@ -216,8 +236,15 @@ fun BillEditScreen(
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         BillMethod(Icons.Rounded.EditNote, stringResource(R.string.method_write), Modifier.weight(1f)) { vm.addItem() }
                         BillMethod(Icons.Rounded.Mic, stringResource(R.string.method_voice), Modifier.weight(1f)) { showVoice = true }
-                        BillMethod(Icons.Rounded.DocumentScanner, stringResource(R.string.method_scan), Modifier.weight(1f)) { startScan() }
+                        BillMethod(Icons.Rounded.DocumentScanner, stringResource(R.string.bill_method_photo), Modifier.weight(1f)) { startScan() }
+                        BillMethod(Icons.Rounded.Videocam, stringResource(R.string.bill_method_video), Modifier.weight(1f)) { startVideo() }
                     }
+                    Spacer(Modifier.height(6.dp))
+                    Text(
+                        stringResource(R.string.bill_scan_choose_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = colors.onSurfaceVariant
+                    )
                 }
 
                 if (draft.imagePath != null || state.reading) {
@@ -318,6 +345,21 @@ fun BillEditScreen(
                 }
             }
         }
+    }
+
+    if (showVideo) {
+        val found by vm.videoFound.collectAsStateWithLifecycle()
+        VideoBillScanner(
+            language = language,
+            foundCount = found,
+            onLanguageChange = vm::setInputLanguage,
+            readFrame = { vm.readVideoFrame(it) },
+            onDone = {
+                showVideo = false
+                if (!vm.finishVideo()) context.toast(R.string.scan_unreadable)
+            },
+            onDismiss = { showVideo = false }
+        )
     }
 
     if (showVoice) {
